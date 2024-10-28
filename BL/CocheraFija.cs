@@ -4,9 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BE
+namespace BL
 {
-    public class Class1
+    public class CocheraFija
     {
+        public int IdCocheraFija { get; set; }
+        public int ValorMes { get; set; }
+
     }
 }

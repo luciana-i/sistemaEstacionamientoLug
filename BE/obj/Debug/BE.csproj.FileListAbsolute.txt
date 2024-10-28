@@ -1,0 +1,6 @@
+C:\Users\Administrator\Documents\Luciana\Facultad\Lug\SistemaEstacionamiento\BE\bin\Debug\BE.dll
+C:\Users\Administrator\Documents\Luciana\Facultad\Lug\SistemaEstacionamiento\BE\bin\Debug\BE.pdb
+C:\Users\Administrator\Documents\Luciana\Facultad\Lug\SistemaEstacionamiento\BE\obj\Debug\BE.csproj.AssemblyReference.cache
+C:\Users\Administrator\Documents\Luciana\Facultad\Lug\SistemaEstacionamiento\BE\obj\Debug\BE.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\Documents\Luciana\Facultad\Lug\SistemaEstacionamiento\BE\obj\Debug\BE.dll
+C:\Users\Administrator\Documents\Luciana\Facultad\Lug\SistemaEstacionamiento\BE\obj\Debug\BE.pdb

@@ -1,0 +1,9 @@
+C:\Users\Administrator\Documents\Luciana\Facultad\Lug\SistemaEstacionamiento\DAL\bin\Debug\DAL.dll
+C:\Users\Administrator\Documents\Luciana\Facultad\Lug\SistemaEstacionamiento\DAL\bin\Debug\DAL.pdb
+C:\Users\Administrator\Documents\Luciana\Facultad\Lug\SistemaEstacionamiento\DAL\bin\Debug\BE.dll
+C:\Users\Administrator\Documents\Luciana\Facultad\Lug\SistemaEstacionamiento\DAL\bin\Debug\BE.pdb
+C:\Users\Administrator\Documents\Luciana\Facultad\Lug\SistemaEstacionamiento\DAL\obj\Debug\DAL.csproj.AssemblyReference.cache
+C:\Users\Administrator\Documents\Luciana\Facultad\Lug\SistemaEstacionamiento\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\Documents\Luciana\Facultad\Lug\SistemaEstacionamiento\DAL\obj\Debug\DAL.csproj.Up2Date
+C:\Users\Administrator\Documents\Luciana\Facultad\Lug\SistemaEstacionamiento\DAL\obj\Debug\DAL.dll
+C:\Users\Administrator\Documents\Luciana\Facultad\Lug\SistemaEstacionamiento\DAL\obj\Debug\DAL.pdb

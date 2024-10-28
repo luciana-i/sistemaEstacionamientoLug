@@ -1,12 +1,53 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\Administrator\\Documents\\Luciana\\Facultad\\Lug\\SistemaEstacionamiento\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{3FCEFCEF-0C33-4F2E-B60F-62D5F72E1845}|SistemaEstacionamiento\\SistemaEstacionamiento.csproj|c:\\users\\administrator\\documents\\luciana\\facultad\\lug\\sistemaestacionamiento\\sistemaestacionamiento\\playasform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3FCEFCEF-0C33-4F2E-B60F-62D5F72E1845}|SistemaEstacionamiento\\SistemaEstacionamiento.csproj|solutionrelative:sistemaestacionamiento\\playasform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3FCEFCEF-0C33-4F2E-B60F-62D5F72E1845}|SistemaEstacionamiento\\SistemaEstacionamiento.csproj|c:\\users\\administrator\\documents\\luciana\\facultad\\lug\\sistemaestacionamiento\\sistemaestacionamiento\\playasform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{3FCEFCEF-0C33-4F2E-B60F-62D5F72E1845}|SistemaEstacionamiento\\SistemaEstacionamiento.csproj|solutionrelative:sistemaestacionamiento\\playasform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "PlayasForm.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\Luciana\\Facultad\\Lug\\SistemaEstacionamiento\\SistemaEstacionamiento\\PlayasForm.cs",
+              "RelativeDocumentMoniker": "SistemaEstacionamiento\\PlayasForm.cs",
+              "ToolTip": "C:\\Users\\Administrator\\Documents\\Luciana\\Facultad\\Lug\\SistemaEstacionamiento\\SistemaEstacionamiento\\PlayasForm.cs",
+              "RelativeToolTip": "SistemaEstacionamiento\\PlayasForm.cs",
+              "ViewState": "AgIAAHgAAAAAAAAAAAA2wKcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-28T23:28:43.133Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "PlayasForm.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\Luciana\\Facultad\\Lug\\SistemaEstacionamiento\\SistemaEstacionamiento\\PlayasForm.cs",
+              "RelativeDocumentMoniker": "SistemaEstacionamiento\\PlayasForm.cs",
+              "ToolTip": "C:\\Users\\Administrator\\Documents\\Luciana\\Facultad\\Lug\\SistemaEstacionamiento\\SistemaEstacionamiento\\PlayasForm.cs [Design]",
+              "RelativeToolTip": "SistemaEstacionamiento\\PlayasForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-28T23:28:39.644Z",
+              "EditorCaption": " [Design]"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

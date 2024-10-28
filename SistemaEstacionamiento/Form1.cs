@@ -17,10 +17,24 @@ namespace SistemaEstacionamiento
         public Form1()
         {
             InitializeComponent();
+            this.IsMdiContainer = true;
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            this.Width = 800;
+            this.Height = 600;
+        }
+
+        private void listadoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            PlayasForm playasForm = new PlayasForm();
+            playasForm.MdiParent = this;
+            playasForm.WindowState = FormWindowState.Maximized;
+            playasForm.MinimizeBox = false;
+            playasForm.MaximizeBox = false;
+            playasForm.Show();
 
         }
     }
