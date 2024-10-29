@@ -46,11 +46,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="DetalleEspacio.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="DetalleEspacio.Designer.cs">
+      <DependentUpon>DetalleEspacio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EspaciosForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EspaciosForm.Designer.cs">
+      <DependentUpon>EspaciosForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MenuInicial.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MenuInicial.Designer.cs">
+      <DependentUpon>MenuInicial.cs</DependentUpon>
     </Compile>
     <Compile Include="PlayasForm.cs">
       <SubType>Form</SubType>
@@ -60,8 +72,14 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="DetalleEspacio.resx">
+      <DependentUpon>DetalleEspacio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EspaciosForm.resx">
+      <DependentUpon>EspaciosForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MenuInicial.resx">
+      <DependentUpon>MenuInicial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PlayasForm.resx">
       <DependentUpon>PlayasForm.cs</DependentUpon>

@@ -152,8 +152,9 @@
             this.CocherasButton.Name = "CocherasButton";
             this.CocherasButton.Size = new System.Drawing.Size(150, 23);
             this.CocherasButton.TabIndex = 13;
-            this.CocherasButton.Text = "Agregar Cocheras";
+            this.CocherasButton.Text = "Agregar Espacios";
             this.CocherasButton.UseVisualStyleBackColor = true;
+            this.CocherasButton.Click += new System.EventHandler(this.CocherasButton_Click);
             // 
             // PlayasForm
             // 

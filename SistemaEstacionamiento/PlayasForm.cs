@@ -163,5 +163,13 @@ namespace SistemaEstacionamiento
             }
 
         }
+
+        private void CocherasButton_Click(object sender, EventArgs e)
+        {
+            EspaciosForm espaciosForm = new EspaciosForm();
+            espaciosForm.MinimizeBox = false;
+            espaciosForm.MaximizeBox = false;
+            espaciosForm.Show();
+        }
     }
 }
