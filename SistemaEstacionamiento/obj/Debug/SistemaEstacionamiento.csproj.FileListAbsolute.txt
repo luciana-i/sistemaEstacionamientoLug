@@ -1,5 +1,4 @@
 C:\Users\Administrator\Documents\Luciana\Facultad\Lug\SistemaEstacionamiento\SistemaEstacionamiento\obj\Debug\SistemaEstacionamiento.csproj.AssemblyReference.cache
-C:\Users\Administrator\Documents\Luciana\Facultad\Lug\SistemaEstacionamiento\SistemaEstacionamiento\obj\Debug\SistemaEstacionamiento.Form1.resources
 C:\Users\Administrator\Documents\Luciana\Facultad\Lug\SistemaEstacionamiento\SistemaEstacionamiento\obj\Debug\SistemaEstacionamiento.Properties.Resources.resources
 C:\Users\Administrator\Documents\Luciana\Facultad\Lug\SistemaEstacionamiento\SistemaEstacionamiento\obj\Debug\SistemaEstacionamiento.csproj.GenerateResource.cache
 C:\Users\Administrator\Documents\Luciana\Facultad\Lug\SistemaEstacionamiento\SistemaEstacionamiento\obj\Debug\SistemaEstacionamiento.csproj.CoreCompileInputs.cache
@@ -16,3 +15,5 @@ C:\Users\Administrator\Documents\Luciana\Facultad\Lug\SistemaEstacionamiento\Sis
 C:\Users\Administrator\Documents\Luciana\Facultad\Lug\SistemaEstacionamiento\SistemaEstacionamiento\obj\Debug\SistemaEstacionamiento.PlayasForm.resources
 C:\Users\Administrator\Documents\Luciana\Facultad\Lug\SistemaEstacionamiento\SistemaEstacionamiento\bin\Debug\DAL.dll
 C:\Users\Administrator\Documents\Luciana\Facultad\Lug\SistemaEstacionamiento\SistemaEstacionamiento\bin\Debug\DAL.pdb
+C:\Users\Administrator\Documents\Luciana\Facultad\Lug\SistemaEstacionamiento\SistemaEstacionamiento\obj\Debug\SistemaEstacionamiento.MenuInicial.resources
+C:\Users\Administrator\Documents\Luciana\Facultad\Lug\SistemaEstacionamiento\SistemaEstacionamiento\obj\Debug\SistemaEstacionamiento.VehiculosForm.resources

@@ -12,9 +12,9 @@ using BE;
 
 namespace SistemaEstacionamiento
 {
-    public partial class Form1 : Form
+    public partial class MenuInicial : Form
     {
-        public Form1()
+        public MenuInicial()
         {
             InitializeComponent();
             this.IsMdiContainer = true;
@@ -36,6 +36,16 @@ namespace SistemaEstacionamiento
             playasForm.MaximizeBox = false;
             playasForm.Show();
 
+        }
+
+        private void listadoToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            VehiculosForm vehiculosForm = new VehiculosForm();
+            vehiculosForm.MdiParent = this;
+            vehiculosForm.WindowState = FormWindowState.Maximized;
+            vehiculosForm.MinimizeBox = false;
+            vehiculosForm.MaximizeBox = false;
+            vehiculosForm.Show();
         }
     }
 }
