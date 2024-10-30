@@ -46,6 +46,8 @@
     <Compile Include="EspacioDAL.cs" />
     <Compile Include="PlayaDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TipoVehiculoDAL.cs" />
+    <Compile Include="VehiculoDAL.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BE\BE.csproj">

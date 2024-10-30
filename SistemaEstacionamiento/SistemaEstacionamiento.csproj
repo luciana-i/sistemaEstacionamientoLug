@@ -78,6 +78,12 @@
     <EmbeddedResource Include="EspaciosForm.resx">
       <DependentUpon>EspaciosForm.cs</DependentUpon>
     </EmbeddedResource>
+    <Compile Include="VehiculosForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VehiculosForm.Designer.cs">
+      <DependentUpon>VehiculosForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="MenuInicial.resx">
       <DependentUpon>MenuInicial.cs</DependentUpon>
     </EmbeddedResource>
@@ -93,6 +99,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="VehiculosForm.resx">
+      <DependentUpon>VehiculosForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

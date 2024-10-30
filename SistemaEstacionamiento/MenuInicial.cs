@@ -37,5 +37,15 @@ namespace SistemaEstacionamiento
             playasForm.Show();
 
         }
+
+        private void listadoToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            VehiculosForm vehiculosForm = new VehiculosForm();
+            vehiculosForm.MdiParent = this;
+            vehiculosForm.WindowState = FormWindowState.Maximized;
+            vehiculosForm.MinimizeBox = false;
+            vehiculosForm.MaximizeBox = false;
+            vehiculosForm.Show();
+        }
     }
 }

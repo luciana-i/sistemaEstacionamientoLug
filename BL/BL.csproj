@@ -45,6 +45,8 @@
     <Compile Include="Excepciones\IcompleteException.cs" />
     <Compile Include="PlayaBL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TipoVehiculoBL.cs" />
+    <Compile Include="VehiculoBL.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BE\BE.csproj">
