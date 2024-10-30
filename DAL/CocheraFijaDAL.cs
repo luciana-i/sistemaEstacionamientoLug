@@ -46,7 +46,7 @@ namespace DAL
 
         public static CocheraFija Obtener(int id)
         {
-            string query = "SELECT * FROM Cochera_Fija WHERE Id_Cochera_Fija = " + id;
+            string query = "SELECT * FROM Cochera_Fija c INNER JOIN Espacio e ON c.Id_espacio=e.Id_Espacio WHERE Id_Cochera_Fija = " + id;
 
             DAO dao = new DAO();
 
@@ -67,7 +67,7 @@ namespace DAL
 
         public static List<CocheraFija> Listar()
         {
-            string query = "SELECT * FROM Cochera_Fija";
+            string query = "SELECT * FROM Cochera_Fija c INNER JOIN Espacio e ON c.Id_espacio=e.Id_Espacio";
 
             DAO dao = new DAO();
 
@@ -90,6 +90,8 @@ namespace DAL
         internal static void LlenarObjeto(CocheraFija cocheraFija, DataRow dr)
         {
             cocheraFija.ValorMes = float.Parse(dr["Valor_Mes"].ToString());
+            cocheraFija.IdEspacio = int.Parse(dr["id_espacio"].ToString());
+            EspacioDAL.LlenarObjeto(cocheraFija, dr);
 
         }
 

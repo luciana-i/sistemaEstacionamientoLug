@@ -17,6 +17,10 @@ namespace SistemaEstacionamiento
 {
     public partial class PlayaCocherasForm : Form
     {
+        EspacioBL espacioBL = new EspacioBL();
+        CocheraMovilBL  movilBL = new CocheraMovilBL();
+        CocheraFijaBL fijaBL = new CocheraFijaBL();
+        List<CocheraDto> cocheraDtos = new List<CocheraDto>();
         public PlayaCocherasForm()
         {
             InitializeComponent();
@@ -35,7 +39,13 @@ namespace SistemaEstacionamiento
             dataGridView1.Columns.Add("Tamano", "Tamaño");
             dataGridView1.Columns["Tamano"].Width = 150;
             dataGridView1.Columns.Add("PorcentajeValor", "Porcentaje Valor");
-            dataGridView1.Columns["PorcentajeValor"].Width = dataGridView1.Width - 500;
+            dataGridView1.Columns["PorcentajeValor"].Width = dataGridView1.Width - 580;
+            dataGridView1.Columns.Add("IdCocheraMovil", "IdCocheraMovil");
+            dataGridView1.Columns["IdCocheraMovil"].Visible = false;
+            dataGridView1.Columns.Add("IdCocheraFija", "IdCocheraFija");
+            dataGridView1.Columns["IdCocheraFija"].Visible = false;
+            dataGridView1.Columns.Add("TipoCochera", "Tipo Cochera");
+            dataGridView1.Columns["TipoCochera"].Width = 100;
             dataGridView1.RowHeadersVisible = false;
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
@@ -45,17 +55,84 @@ namespace SistemaEstacionamiento
             
 
 
-            //Actualizar();
+            Actualizar();
         }
-
+        // agregarCochera
         private void button1_Click(object sender, EventArgs e)
         {
             CocherasForm cForm = new CocherasForm();
             cForm.MinimizeBox = false;
             cForm.MaximizeBox = false;
-            cForm.Show();
+            cForm.ShowDialog(this);
+            Actualizar();
 
+        }
 
+        private void Actualizar()
+        {
+
+            dataGridView1.Rows.Clear();
+            foreach (CocheraDto cochera in obtenerCocheras())
+            {
+                 dataGridView1.Rows.Add(cochera.IdEspacio, cochera.Piso, cochera.Tamano, cochera.PorcentajeValor, cochera.IdCocheraMovil, cochera.IdCocheraFija,cochera.TipoCochera);
+            }
+        }
+
+        private List<CocheraDto> obtenerCocheras()
+        {
+            cocheraDtos.Clear();
+            foreach (var item in movilBL.Listar())
+            {
+                CocheraDto cocheraDto = new CocheraDto();
+                cocheraDto.IdEspacio = item.IdEspacio;
+                cocheraDto.PorcentajeValor = item.PorcentajeValor;
+                cocheraDto.Tamano = item.Tamano;
+                cocheraDto.Piso = item.Piso;
+                cocheraDto.IdCocheraMovil = item.IdCocheraMovil;
+                cocheraDtos.Add(cocheraDto);
+            }
+            foreach (var item in fijaBL.Listar())
+            {
+                CocheraDto cocheraDto = new CocheraDto();
+                cocheraDto.IdEspacio = item.IdEspacio;
+                cocheraDto.PorcentajeValor = item.PorcentajeValor;
+                cocheraDto.Tamano = item.Tamano;
+                cocheraDto.Piso = item.Piso;
+                cocheraDto.IdCocheraFija = item.IdCocheraFija;
+                cocheraDtos.Add(cocheraDto);
+            }
+            return cocheraDtos;
+        }
+
+        // editar cochera
+        private void button2_Click(object sender, EventArgs e)
+        {
+            CocherasForm cForm = new CocherasForm(int.Parse(dataGridView1.SelectedRows[0].Cells["IdEspacio"].Value.ToString()));
+            cForm.MinimizeBox = false;
+            cForm.MaximizeBox = false;
+            cForm.ShowDialog(this);
+            Actualizar();
+        }
+        /// <summary>
+        /// eleminar Cochera
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button3_Click(object sender, EventArgs e)
+        {
+            CocheraDto cochera = cocheraDtos.FirstOrDefault(x => x.IdEspacio == int.Parse(dataGridView1.SelectedRows[0].Cells["IdEspacio"].Value.ToString()));
+            if (cochera.IdCocheraMovil != 0)
+            {
+               CocheraMovil cm = movilBL.Obtener(cochera.IdCocheraMovil);
+               movilBL.Eliminar(cm);
+            }
+            else
+            {
+                CocheraFija cf = fijaBL.Obtener(cochera.IdCocheraFija);
+                fijaBL.Eliminar(cf);
+            }
+
+            Actualizar();
         }
     }
 }

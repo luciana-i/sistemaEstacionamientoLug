@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="CocheraFijaBL.cs" />
     <Compile Include="CocheraMovilBL.cs" />
+    <Compile Include="CocheraDto.cs" />
     <Compile Include="EspacioBL.cs" />
     <Compile Include="Excepciones\IcompleteException.cs" />
     <Compile Include="PlayaBL.cs" />

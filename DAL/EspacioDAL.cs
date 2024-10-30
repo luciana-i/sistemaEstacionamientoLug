@@ -91,6 +91,7 @@ namespace DAL
         {
             espacio.Tamano = dr["Tamano"].ToString();
             espacio.PorcentajeValor = int.Parse(dr["Porcentaje_Valor"].ToString());
+            espacio.IdEspacio = int.Parse(dr["id_espacio"].ToString());
             espacio.Piso = int.Parse(dr["Piso"].ToString());
             Vehiculo v  = new Vehiculo();
             v.IdVehiculo = 1;

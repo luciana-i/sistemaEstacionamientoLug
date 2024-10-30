@@ -120,12 +120,17 @@ namespace SistemaEstacionamiento
          */
         private void button3_Click(object sender, EventArgs e)
         {
-            editando = true;
-            textBox1.Text = dataGridView1.SelectedRows[0].Cells["Nombre"].Value.ToString();
-            textBox2.Text = dataGridView1.SelectedRows[0].Cells["Direccion"].Value.ToString();
-            textBox3.Text = dataGridView1.SelectedRows[0].Cells["HoraApertura"].Value.ToString();
-            textBox4.Text = dataGridView1.SelectedRows[0].Cells["HoraCierre"].Value.ToString();
-            CocherasButton.Enabled= editando;
+            //editando = true;
+            //textBox1.Text = dataGridView1.SelectedRows[0].Cells["Nombre"].Value.ToString();
+            //textBox2.Text = dataGridView1.SelectedRows[0].Cells["Direccion"].Value.ToString();
+            //textBox3.Text = dataGridView1.SelectedRows[0].Cells["HoraApertura"].Value.ToString();
+            //textBox4.Text = dataGridView1.SelectedRows[0].Cells["HoraCierre"].Value.ToString();
+            //CocherasButton.Enabled= editando;
+
+            PlayaCocherasForm pcForm = new PlayaCocherasForm();
+            pcForm.MinimizeBox = false;
+            pcForm.MaximizeBox = false;
+            pcForm.Show();
         }
 
         /*

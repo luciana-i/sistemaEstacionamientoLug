@@ -27,9 +27,14 @@ namespace BL
             return CocheraFijaDAL.Guardar(cocheraFija);
         }
 
-        public int Eliminar(int id)
+        public int Eliminar(CocheraFija cochera)
         {
-            return CocheraFijaDAL.Eliminar(id);
+            CocheraFijaDAL.Eliminar(cochera.IdCocheraFija);
+            return EspacioDAL.Eliminar(cochera.IdEspacio);
         }
+
+
+   
+
     }
 }

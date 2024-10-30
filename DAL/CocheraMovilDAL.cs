@@ -46,7 +46,7 @@ namespace DAL
 
         public static CocheraMovil Obtener(int id)
         {
-            string query = "SELECT * FROM Cochera_Movil WHERE Id_cochera_Movil = " + id;
+            string query = "SELECT * FROM Cochera_Movil c INNER JOIN Espacio e ON c.Id_espacio=e.Id_Espacio WHERE Id_cochera_Movil = " + id;
 
             DAO dao = new DAO();
 
@@ -67,7 +67,7 @@ namespace DAL
 
         public static List<CocheraMovil> Listar()
         {
-            string query = "SELECT * FROM Cochera_Movil";
+            string query = "SELECT * FROM Cochera_Movil c INNER JOIN Espacio e ON c.Id_espacio=e.Id_Espacio";
 
             DAO dao = new DAO();
 
@@ -78,7 +78,7 @@ namespace DAL
             {
                 foreach (DataRow dr in dset.Tables[0].Rows)
                 {
-                    CocheraMovil cocheraMovil = new CocheraMovil(int.Parse(dr["id_CocheraMovil"].ToString()));
+                    CocheraMovil cocheraMovil = new CocheraMovil(int.Parse(dr["id_Cochera_Movil"].ToString()));
                     LlenarObjeto(cocheraMovil, dr);
                     listaCocheraMovils.Add(cocheraMovil);
                 }
@@ -91,6 +91,8 @@ namespace DAL
         {
             cocheraMovil.HoraSalida = TimeSpan.Parse(dr["hora_salida"].ToString());
             cocheraMovil.HoraEntrada = TimeSpan.Parse(dr["Hora_entrada"].ToString());
+            cocheraMovil.IdEspacio = int.Parse(dr["id_espacio"].ToString());
+            EspacioDAL.LlenarObjeto(cocheraMovil, dr);
         }
     }
 }
