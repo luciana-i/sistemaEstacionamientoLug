@@ -10,5 +10,11 @@ namespace BE
     {
         public int IdCocheraFija { get; set; }
         public float ValorMes {  get; set; }
+        public int IdEspacio { get; set; }
+        public CocheraFija() { }
+        public CocheraFija(int id)
+        {
+            IdCocheraFija = id;
+        }
     }
 }

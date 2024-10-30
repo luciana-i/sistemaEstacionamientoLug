@@ -171,5 +171,13 @@ namespace SistemaEstacionamiento
             espaciosForm.MaximizeBox = false;
             espaciosForm.Show();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            PlayaCocherasForm pcForm = new PlayaCocherasForm();
+            pcForm.MinimizeBox = false;
+            pcForm.MaximizeBox = false;
+            pcForm.Show();
+        }
     }
 }

@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CocherasForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CocherasForm.Designer.cs">
+      <DependentUpon>CocherasForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="DetalleEspacio.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -64,6 +70,12 @@
     <Compile Include="MenuInicial.Designer.cs">
       <DependentUpon>MenuInicial.cs</DependentUpon>
     </Compile>
+    <Compile Include="PlayaCocherasForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PlayaCocherasForm.Designer.cs">
+      <DependentUpon>PlayaCocherasForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="PlayasForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -72,6 +84,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="CocherasForm.resx">
+      <DependentUpon>CocherasForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DetalleEspacio.resx">
       <DependentUpon>DetalleEspacio.cs</DependentUpon>
     </EmbeddedResource>
@@ -86,6 +101,9 @@
     </Compile>
     <EmbeddedResource Include="MenuInicial.resx">
       <DependentUpon>MenuInicial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PlayaCocherasForm.resx">
+      <DependentUpon>PlayaCocherasForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PlayasForm.resx">
       <DependentUpon>PlayasForm.cs</DependentUpon>

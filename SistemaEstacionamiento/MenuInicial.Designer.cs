@@ -96,9 +96,6 @@
             this.listadoToolStripMenuItem.Text = "Listado";
             this.listadoToolStripMenuItem.Click += new System.EventHandler(this.listadoToolStripMenuItem_Click);
             // 
-<<<<<<< HEAD
-            // MenuInicial
-=======
             // vehiculosToolStripMenuItem
             // 
             this.vehiculosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -115,7 +112,6 @@
             this.listadoToolStripMenuItem1.Click += new System.EventHandler(this.listadoToolStripMenuItem1_Click);
             // 
             // Form1
->>>>>>> master
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;

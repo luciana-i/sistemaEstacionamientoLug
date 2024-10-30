@@ -8,8 +8,15 @@ namespace BE
 {
     public class CocheraMovil :Espacio
     {
-        public int IdCocheraFija { get; set; }
+        public int IdCocheraMovil { get; set; }
         public TimeSpan HoraEntrada { get; set; }
         public TimeSpan HoraSalida { get; set; }
+        public int IdEspacio { get; set; }
+
+        public CocheraMovil() { }
+        public CocheraMovil(int id)
+        {
+            IdCocheraMovil = id;
+        }
     }
 }

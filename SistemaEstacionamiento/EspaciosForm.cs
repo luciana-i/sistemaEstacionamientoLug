@@ -25,7 +25,7 @@ namespace SistemaEstacionamiento
 
         private void EspaciosForm_Load(object sender, EventArgs e)
         {
-            dataGridView1.Columns.Add("IdEspacio", "IdEspacio");
+          /*  dataGridView1.Columns.Add("IdEspacio", "IdEspacio");
             dataGridView1.Columns["IdEspacio"].Visible = false;
             dataGridView1.Columns.Add("Piso", "Piso");
             dataGridView1.Columns["Piso"].Width = 100;
@@ -50,18 +50,19 @@ namespace SistemaEstacionamiento
             //hora salida
             textBox5.Visible = false;
             label7.Visible = false;
-
+          */
 
             Actualizar();
         }
         private void Actualizar()
         {
-            dataGridView1.Rows.Clear();
+            /*dataGridView1.Rows.Clear();
             foreach (Espacio espacio in espacioBL.Listar())
             {
                 dataGridView1.Rows.Add(espacio.IdEspacio, espacio.Piso, espacio.Tamano, espacio.PorcentajeValor);
 
             }
+            */
         }
         /*
          Guardar -editar
@@ -79,7 +80,7 @@ namespace SistemaEstacionamiento
                 }
                 else
                 {
-                    espacio.IdEspacio = int.Parse(dataGridView1.SelectedRows[0].Cells["IdEspacio"].Value.ToString());
+                    espacio.IdEspacio = 1;//int.Parse(dataGridView1.SelectedRows[0].Cells["IdEspacio"].Value.ToString());
                     LlenarObjetoEspacio(espacio);
                     VaciarTextbox();
                     espacioBL.Guardar(espacio);
@@ -124,15 +125,15 @@ namespace SistemaEstacionamiento
         private void button3_Click(object sender, EventArgs e)
         {
             editando=true;
-            textBox1.Text = dataGridView1.SelectedRows[0].Cells["Piso"].Value.ToString();
-            comboBox1.SelectedIndex = comboBox1.Items.IndexOf(dataGridView1.SelectedRows[0].Cells["Tamano"].Value.ToString());
-            textBox3.Text = dataGridView1.SelectedRows[0].Cells["PorcentajeValor"].Value.ToString();
+            textBox1.Text = "";// dataGridView1.SelectedRows[0].Cells["Piso"].Value.ToString();
+            comboBox1.SelectedIndex = 1;// comboBox1.Items.IndexOf(dataGridView1.SelectedRows[0].Cells["Tamano"].Value.ToString());
+            textBox3.Text = "";//dataGridView1.SelectedRows[0].Cells["PorcentajeValor"].Value.ToString();
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
 
-            int id = int.Parse(dataGridView1.SelectedRows[0].Cells["IdEspacio"].Value.ToString());
+            int id = 0;//int.Parse(dataGridView1.SelectedRows[0].Cells["IdEspacio"].Value.ToString());
             if (id > 0)
             {
                 if (Preguntar())
@@ -168,6 +169,7 @@ namespace SistemaEstacionamiento
             {
                 if (comboBox2.SelectedItem == "Fija")
                 {
+                    /*
                     textBox2.Visible = true;
                     label5.Visible = true;
                     
@@ -180,10 +182,11 @@ namespace SistemaEstacionamiento
                     textBox5.Visible = false;
                     label7.Visible = false;
                     textBox5.Text = "";
+                    */
                 }
                 else if(comboBox2.SelectedItem == "Movil")
                 {
-                    textBox4.Visible = true;
+                    /*textBox4.Visible = true;
                     textBox5.Visible = true;
                     label7.Visible = true;
                     label6.Visible = true;
@@ -192,6 +195,7 @@ namespace SistemaEstacionamiento
                     textBox2.Visible = false;
                     label5.Visible = false;
                     textBox2.Text = "";
+                    */
                 }
                 
 
