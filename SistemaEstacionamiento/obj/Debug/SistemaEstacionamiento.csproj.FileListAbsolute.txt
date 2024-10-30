@@ -1,6 +1,4 @@
 C:\Users\Administrator\Documents\Luciana\Facultad\Lug\SistemaEstacionamiento\SistemaEstacionamiento\obj\Debug\SistemaEstacionamiento.csproj.AssemblyReference.cache
-C:\Users\Administrator\Documents\Luciana\Facultad\Lug\SistemaEstacionamiento\SistemaEstacionamiento\obj\Debug\SistemaEstacionamiento.DetalleEspacio.resources
-C:\Users\Administrator\Documents\Luciana\Facultad\Lug\SistemaEstacionamiento\SistemaEstacionamiento\obj\Debug\SistemaEstacionamiento.EspaciosForm.resources
 C:\Users\Administrator\Documents\Luciana\Facultad\Lug\SistemaEstacionamiento\SistemaEstacionamiento\obj\Debug\SistemaEstacionamiento.MenuInicial.resources
 C:\Users\Administrator\Documents\Luciana\Facultad\Lug\SistemaEstacionamiento\SistemaEstacionamiento\obj\Debug\SistemaEstacionamiento.PlayasForm.resources
 C:\Users\Administrator\Documents\Luciana\Facultad\Lug\SistemaEstacionamiento\SistemaEstacionamiento\obj\Debug\SistemaEstacionamiento.Properties.Resources.resources

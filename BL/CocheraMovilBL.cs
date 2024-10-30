@@ -20,6 +20,12 @@ namespace BL
             return CocheraMovilDAL.Listar();
         }
 
+        public List<CocheraMovil> ListarPorPlaya(int id)
+        {
+            return CocheraMovilDAL.ListarPorPlaya(id);
+        }
+
+
         public int Guardar(CocheraMovil cocheraMovil)
         {
             base.Guardar(cocheraMovil);

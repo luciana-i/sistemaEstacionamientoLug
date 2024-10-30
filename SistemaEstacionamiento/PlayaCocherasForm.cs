@@ -21,17 +21,16 @@ namespace SistemaEstacionamiento
         CocheraMovilBL  movilBL = new CocheraMovilBL();
         CocheraFijaBL fijaBL = new CocheraFijaBL();
         List<CocheraDto> cocheraDtos = new List<CocheraDto>();
+        public Playa playaEditada { get; set; }
         public PlayaCocherasForm()
-        {
-            InitializeComponent();
-        }
-        public PlayaCocherasForm(int idPlaya)
         {
             InitializeComponent();
         }
 
         private void PlayaCocherasForm_Load(object sender, EventArgs e)
         {
+           
+
             dataGridView1.Columns.Add("IdEspacio", "IdEspacio");
             dataGridView1.Columns["IdEspacio"].Visible = false;
             dataGridView1.Columns.Add("Piso", "Piso");
@@ -52,11 +51,22 @@ namespace SistemaEstacionamiento
             dataGridView1.EditMode = DataGridViewEditMode.EditProgrammatically;
             dataGridView1.MultiSelect = false;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            
 
-
-            Actualizar();
+            if (playaEditada != null)
+            {
+                cargarDatos(playaEditada);
+                Actualizar();
+            }
         }
+
+        private void cargarDatos(Playa playaEditada)
+        {
+            textBox1.Text = playaEditada.Nombre;
+            textBox2.Text = playaEditada.Direccion;
+            textBox3.Text = playaEditada.HoraApertura.ToString();
+            textBox4.Text = playaEditada.HoraCierre.ToString();
+        }
+
         // agregarCochera
         private void button1_Click(object sender, EventArgs e)
         {
@@ -70,7 +80,7 @@ namespace SistemaEstacionamiento
 
         private void Actualizar()
         {
-
+            
             dataGridView1.Rows.Clear();
             foreach (CocheraDto cochera in obtenerCocheras())
             {
@@ -80,8 +90,9 @@ namespace SistemaEstacionamiento
 
         private List<CocheraDto> obtenerCocheras()
         {
+
             cocheraDtos.Clear();
-            foreach (var item in movilBL.Listar())
+            foreach (var item in movilBL.ListarPorPlaya(playaEditada.IdPlaya))
             {
                 CocheraDto cocheraDto = new CocheraDto();
                 cocheraDto.IdEspacio = item.IdEspacio;
@@ -91,7 +102,7 @@ namespace SistemaEstacionamiento
                 cocheraDto.IdCocheraMovil = item.IdCocheraMovil;
                 cocheraDtos.Add(cocheraDto);
             }
-            foreach (var item in fijaBL.Listar())
+            foreach (var item in fijaBL.ListarPorPlaya(playaEditada.IdPlaya))
             {
                 CocheraDto cocheraDto = new CocheraDto();
                 cocheraDto.IdEspacio = item.IdEspacio;

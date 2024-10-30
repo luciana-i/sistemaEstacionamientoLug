@@ -15,9 +15,16 @@ namespace BL
             return CocheraFijaDAL.Obtener(pId);
         }
 
+    
+
         public List<CocheraFija> Listar()
         {
             return CocheraFijaDAL.Listar();
+        }
+
+        public List<CocheraFija> ListarPorPlaya(int id)
+        {
+            return CocheraFijaDAL.ListarPorPlaya(id);
         }
 
         public int Guardar(CocheraFija cocheraFija)

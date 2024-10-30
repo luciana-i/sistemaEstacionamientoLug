@@ -52,18 +52,6 @@
     <Compile Include="CocherasForm.Designer.cs">
       <DependentUpon>CocherasForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="DetalleEspacio.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="DetalleEspacio.Designer.cs">
-      <DependentUpon>DetalleEspacio.cs</DependentUpon>
-    </Compile>
-    <Compile Include="EspaciosForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="EspaciosForm.Designer.cs">
-      <DependentUpon>EspaciosForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="MenuInicial.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -86,12 +74,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="CocherasForm.resx">
       <DependentUpon>CocherasForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DetalleEspacio.resx">
-      <DependentUpon>DetalleEspacio.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="EspaciosForm.resx">
-      <DependentUpon>EspaciosForm.cs</DependentUpon>
     </EmbeddedResource>
     <Compile Include="VehiculosForm.cs">
       <SubType>Form</SubType>

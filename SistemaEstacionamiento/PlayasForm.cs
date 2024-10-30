@@ -128,9 +128,12 @@ namespace SistemaEstacionamiento
             //CocherasButton.Enabled= editando;
 
             PlayaCocherasForm pcForm = new PlayaCocherasForm();
+            pcForm.playaEditada = playaBL.Obtener(int.Parse(dataGridView1.SelectedRows[0].Cells["IdPlaya"].Value.ToString()));
             pcForm.MinimizeBox = false;
             pcForm.MaximizeBox = false;
-            pcForm.Show();
+            pcForm.ShowDialog();
+            Actualizar();
+            
         }
 
         /*
@@ -171,18 +174,20 @@ namespace SistemaEstacionamiento
 
         private void CocherasButton_Click(object sender, EventArgs e)
         {
-            EspaciosForm espaciosForm = new EspaciosForm();
-            espaciosForm.MinimizeBox = false;
-            espaciosForm.MaximizeBox = false;
-            espaciosForm.Show();
+            //EspaciosForm espaciosForm = new EspaciosForm();
+            //espaciosForm.MinimizeBox = false;
+            //espaciosForm.MaximizeBox = false;
+            //espaciosForm.Show();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             PlayaCocherasForm pcForm = new PlayaCocherasForm();
+            //pcForm.playaEditada = playaBL.Obtener(int.Parse(dataGridView1.SelectedRows[0].Cells["IdPlaya"].Value.ToString()));
             pcForm.MinimizeBox = false;
             pcForm.MaximizeBox = false;
-            pcForm.Show();
+            pcForm.ShowDialog();
+            Actualizar();
         }
     }
 }

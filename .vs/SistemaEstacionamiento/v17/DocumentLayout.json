@@ -11,12 +11,12 @@
       "RelativeMoniker": "D:0:0:{3FCEFCEF-0C33-4F2E-B60F-62D5F72E1845}|SistemaEstacionamiento\\SistemaEstacionamiento.csproj|solutionrelative:sistemaestacionamiento\\playacocherasform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3FCEFCEF-0C33-4F2E-B60F-62D5F72E1845}|SistemaEstacionamiento\\SistemaEstacionamiento.csproj|c:\\users\\administrator\\documents\\luciana\\facultad\\lug\\sistemaestacionamiento\\sistemaestacionamiento\\cocherasform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3FCEFCEF-0C33-4F2E-B60F-62D5F72E1845}|SistemaEstacionamiento\\SistemaEstacionamiento.csproj|solutionrelative:sistemaestacionamiento\\cocherasform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3FCEFCEF-0C33-4F2E-B60F-62D5F72E1845}|SistemaEstacionamiento\\SistemaEstacionamiento.csproj|c:\\users\\administrator\\documents\\luciana\\facultad\\lug\\sistemaestacionamiento\\sistemaestacionamiento\\playasform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{3FCEFCEF-0C33-4F2E-B60F-62D5F72E1845}|SistemaEstacionamiento\\SistemaEstacionamiento.csproj|solutionrelative:sistemaestacionamiento\\playasform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3FCEFCEF-0C33-4F2E-B60F-62D5F72E1845}|SistemaEstacionamiento\\SistemaEstacionamiento.csproj|c:\\users\\administrator\\documents\\luciana\\facultad\\lug\\sistemaestacionamiento\\sistemaestacionamiento\\cocherasform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{3FCEFCEF-0C33-4F2E-B60F-62D5F72E1845}|SistemaEstacionamiento\\SistemaEstacionamiento.csproj|solutionrelative:sistemaestacionamiento\\cocherasform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{3FCEFCEF-0C33-4F2E-B60F-62D5F72E1845}|SistemaEstacionamiento\\SistemaEstacionamiento.csproj|c:\\users\\administrator\\documents\\luciana\\facultad\\lug\\sistemaestacionamiento\\sistemaestacionamiento\\playasform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3FCEFCEF-0C33-4F2E-B60F-62D5F72E1845}|SistemaEstacionamiento\\SistemaEstacionamiento.csproj|solutionrelative:sistemaestacionamiento\\playasform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,45 +26,45 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 0,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "CocherasForm.cs",
-              "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\Luciana\\Facultad\\Lug\\SistemaEstacionamiento\\SistemaEstacionamiento\\CocherasForm.cs",
-              "RelativeDocumentMoniker": "SistemaEstacionamiento\\CocherasForm.cs",
-              "ToolTip": "C:\\Users\\Administrator\\Documents\\Luciana\\Facultad\\Lug\\SistemaEstacionamiento\\SistemaEstacionamiento\\CocherasForm.cs",
-              "RelativeToolTip": "SistemaEstacionamiento\\CocherasForm.cs",
-              "ViewState": "AgIAAEUAAAAAAAAAAAAuwFUAAAAxAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-30T18:32:23.146Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "CocherasForm.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\Luciana\\Facultad\\Lug\\SistemaEstacionamiento\\SistemaEstacionamiento\\CocherasForm.cs",
-              "RelativeDocumentMoniker": "SistemaEstacionamiento\\CocherasForm.cs",
-              "ToolTip": "C:\\Users\\Administrator\\Documents\\Luciana\\Facultad\\Lug\\SistemaEstacionamiento\\SistemaEstacionamiento\\CocherasForm.cs [Design]",
-              "RelativeToolTip": "SistemaEstacionamiento\\CocherasForm.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-30T18:36:55.787Z",
-              "EditorCaption": " [Design]"
-            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "PlayaCocherasForm.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\Luciana\\Facultad\\Lug\\SistemaEstacionamiento\\SistemaEstacionamiento\\PlayaCocherasForm.cs",
               "RelativeDocumentMoniker": "SistemaEstacionamiento\\PlayaCocherasForm.cs",
-              "ToolTip": "C:\\Users\\Administrator\\Documents\\Luciana\\Facultad\\Lug\\SistemaEstacionamiento\\SistemaEstacionamiento\\PlayaCocherasForm.cs",
-              "RelativeToolTip": "SistemaEstacionamiento\\PlayaCocherasForm.cs",
-              "ViewState": "AgIAAGUAAAAAAAAAAAAAwHAAAAAhAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\Administrator\\Documents\\Luciana\\Facultad\\Lug\\SistemaEstacionamiento\\SistemaEstacionamiento\\PlayaCocherasForm.cs*",
+              "RelativeToolTip": "SistemaEstacionamiento\\PlayaCocherasForm.cs*",
+              "ViewState": "AgIAACsAAAAAAAAAAAAwwDkAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-30T18:28:57.068Z",
+              "WhenOpened": "2024-10-30T22:38:19.705Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "PlayasForm.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\Luciana\\Facultad\\Lug\\SistemaEstacionamiento\\SistemaEstacionamiento\\PlayasForm.cs",
+              "RelativeDocumentMoniker": "SistemaEstacionamiento\\PlayasForm.cs",
+              "ToolTip": "C:\\Users\\Administrator\\Documents\\Luciana\\Facultad\\Lug\\SistemaEstacionamiento\\SistemaEstacionamiento\\PlayasForm.cs",
+              "RelativeToolTip": "SistemaEstacionamiento\\PlayasForm.cs",
+              "ViewState": "AgIAALEAAAAAAAAAAAAkwLkAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-30T22:37:19.194Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "PlayasForm.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\Luciana\\Facultad\\Lug\\SistemaEstacionamiento\\SistemaEstacionamiento\\PlayasForm.cs",
+              "RelativeDocumentMoniker": "SistemaEstacionamiento\\PlayasForm.cs",
+              "ToolTip": "C:\\Users\\Administrator\\Documents\\Luciana\\Facultad\\Lug\\SistemaEstacionamiento\\SistemaEstacionamiento\\PlayasForm.cs [Design]",
+              "RelativeToolTip": "SistemaEstacionamiento\\PlayasForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-30T22:37:17.54Z",
+              "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
@@ -72,10 +72,10 @@
               "Title": "PlayaCocherasForm.cs [Design]",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\Luciana\\Facultad\\Lug\\SistemaEstacionamiento\\SistemaEstacionamiento\\PlayaCocherasForm.cs",
               "RelativeDocumentMoniker": "SistemaEstacionamiento\\PlayaCocherasForm.cs",
-              "ToolTip": "C:\\Users\\Administrator\\Documents\\Luciana\\Facultad\\Lug\\SistemaEstacionamiento\\SistemaEstacionamiento\\PlayaCocherasForm.cs [Design]",
-              "RelativeToolTip": "SistemaEstacionamiento\\PlayaCocherasForm.cs [Design]",
+              "ToolTip": "C:\\Users\\Administrator\\Documents\\Luciana\\Facultad\\Lug\\SistemaEstacionamiento\\SistemaEstacionamiento\\PlayaCocherasForm.cs [Design]*",
+              "RelativeToolTip": "SistemaEstacionamiento\\PlayaCocherasForm.cs [Design]*",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-30T18:28:55.196Z",
+              "WhenOpened": "2024-10-30T22:37:13.365Z",
               "EditorCaption": " [Design]"
             }
           ]

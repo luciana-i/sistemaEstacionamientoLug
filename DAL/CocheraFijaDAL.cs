@@ -65,9 +65,33 @@ namespace DAL
 
         }
 
+ 
+
         public static List<CocheraFija> Listar()
         {
             string query = "SELECT * FROM Cochera_Fija c INNER JOIN Espacio e ON c.Id_espacio=e.Id_Espacio";
+
+            DAO dao = new DAO();
+
+            DataSet dset = dao.ExecuteDataSet(query);
+            List<CocheraFija> listaCocheraFijas = new List<CocheraFija>();
+
+            if (dset.Tables.Count > 0 && dset.Tables[0].Rows.Count > 0)
+            {
+                foreach (DataRow dr in dset.Tables[0].Rows)
+                {
+                    CocheraFija cocheraFija = new CocheraFija(int.Parse(dr["Id_Cochera_Fija"].ToString()));
+                    LlenarObjeto(cocheraFija, dr);
+                    listaCocheraFijas.Add(cocheraFija);
+                }
+
+            }
+            return listaCocheraFijas;
+        }
+
+        public static List<CocheraFija> ListarPorPlaya(int id)
+        {
+            string query = "SELECT * FROM Cochera_Fija c INNER JOIN Espacio e ON c.Id_espacio=e.Id_Espacio WHERE e.Id_playa = " + id;
 
             DAO dao = new DAO();
 
