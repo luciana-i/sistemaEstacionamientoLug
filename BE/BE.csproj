@@ -43,7 +43,9 @@
   <ItemGroup>
     <Compile Include="CocheraFija.cs" />
     <Compile Include="CocheraMovil.cs" />
+    <Compile Include="Constantes.cs" />
     <Compile Include="Espacio.cs" />
+    <Compile Include="IColeccionable.cs" />
     <Compile Include="Playa.cs" />
     <Compile Include="TipoVehiculo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

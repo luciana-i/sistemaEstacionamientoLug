@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
+using System.Reflection;
 
 namespace SistemaEstacionamiento
 {
@@ -18,40 +19,43 @@ namespace SistemaEstacionamiento
     {
         CocheraFijaBL cocheraFijaBL = new CocheraFijaBL();
         CocheraMovilBL cocheraMovilBL = new CocheraMovilBL();
+        PlayaBL playaBL = new PlayaBL();
         int idEspacio = 0;
         int idCocheraEditada = 0;
+        public CocheraDto cocheraDtoEditada;
+        public List<CocheraDto> cocherasEditadasDto { get; set; }
+        public Playa playaEditada { get; set; }
+       
         public CocherasForm()
         {
             InitializeComponent();
         }
 
-        public CocherasForm( int id)
-        {
-            idEspacio = id;
-            InitializeComponent();
-        }
 
         private void CocherasForm_Load(object sender, EventArgs e)
         {
-            if (idEspacio != 0)
+            if (cocheraDtoEditada !=null)
             {
-                Espacio cocheraEditada = cocheraFijaBL.Listar().FirstOrDefault(x=> x.IdEspacio == idEspacio);
-                if (cocheraEditada == null)
-                {
+                //Espacio cocheraEditada = cocheraFijaBL.Listar().FirstOrDefault(x=> x.IdEspacio == idEspacio);
+
+
+
+                //if (cocheraDtoEditada == null)
+                //{
                     
-                    cocheraEditada = cocheraMovilBL.Listar().FirstOrDefault(x => x.IdEspacio == idEspacio);
-                    idCocheraEditada = ((CocheraMovil)cocheraEditada).IdCocheraMovil;
+                //    cocheraEditada = cocheraMovilBL.Listar().FirstOrDefault(x => x.IdEspacio == idEspacio);
+                //    idCocheraEditada = ((CocheraMovil)cocheraEditada).IdCocheraMovil;
 
-                }
-                else
-                {
-                    idCocheraEditada = ((CocheraFija)cocheraEditada).IdCocheraFija;
-                }
+                //}
+                //else
+                //{
+                //    idCocheraEditada = ((CocheraFija)cocheraEditada).IdCocheraFija;
+                //}
 
-                textBox1.Text = cocheraEditada.Piso.ToString();
-                textBox3.Text = cocheraEditada.PorcentajeValor.ToString();
-                comboBox1.Text = cocheraEditada.Tamano.ToString();
-                comboBox2.Text = (cocheraEditada is CocheraFija )?  "Fija":"Movil";
+                textBox1.Text = cocheraDtoEditada.Piso.ToString();
+                textBox3.Text = cocheraDtoEditada.PorcentajeValor.ToString();
+                comboBox1.Text = cocheraDtoEditada.Tamano.ToString();
+                comboBox2.Text = (cocheraDtoEditada.TipoCocheraEnum == Constantes.TipoCochera.Fija )?  "Fija":"Movil";
                 comboBox2.Enabled = false;
             }
         }
@@ -64,40 +68,56 @@ namespace SistemaEstacionamiento
         {
             try
             {
-                Espacio cochera;
-                if (comboBox2.SelectedItem == "Movil")
-                {
-                    cochera = new CocheraMovil();
+                //Espacio cochera;
+                //if (comboBox2.SelectedItem == "Movil")
+                //{
+                //    cochera = new CocheraMovil();
                    
-                }
-                else
+                //}
+                //else
+                //{
+                //    cochera = new CocheraFija();
+                //}
+                if (cocheraDtoEditada==null)
                 {
-                    cochera = new CocheraFija();
-                }
-                if (idEspacio==0)
-                {
-                    LlenarObjetoCochera(cochera);
-                    VaciarTextbox();
-                    guardarCochera(cochera);
-                    this.Close();
-                }
-                else
-                {
-                    LlenarObjetoCochera(cochera);
-                    cochera.IdEspacio = idEspacio;
-                    VaciarTextbox();
-                    if (cochera is CocheraMovil)
+                    CocheraDto cocheraDto = new CocheraDto();
+                    if (comboBox2.SelectedItem == "Movil")
                     {
-                        ((CocheraMovil)cochera).IdEspacio = idEspacio;
-                        ((CocheraMovil)cochera).IdCocheraMovil = idCocheraEditada;
-                        cocheraMovilBL.Guardar((CocheraMovil)cochera);
+                        cocheraDto.TipoCocheraEnum = Constantes.TipoCochera.Movil;
+
                     }
                     else
                     {
-                        ((CocheraFija)cochera).IdEspacio = idEspacio;
-                        ((CocheraFija)cochera).IdCocheraFija = idCocheraEditada;
-                        cocheraFijaBL.Guardar((CocheraFija)cochera);
+                        cocheraDto.TipoCocheraEnum = Constantes.TipoCochera.Fija;
                     }
+                    cocheraDto.EstadoColeccion = Constantes.EstadosColeccion.Agregado;
+                    LlenarObjetoCochera(cocheraDto);
+                    VaciarTextbox();
+                    guardarCochera(cocheraDto);
+                    
+                }
+                else
+                {
+                    LlenarObjetoCochera(cocheraDtoEditada);
+                    if(cocheraDtoEditada.EstadoColeccion != Constantes.EstadosColeccion.Agregado) // significa que si agrego algo y despues lo modifico, entonces no es un update, sigue siendo un insert
+                             cocheraDtoEditada.EstadoColeccion = Constantes.EstadosColeccion.Modificado;
+                    //cochera.IdEspacio = idEspacio;
+                    VaciarTextbox();
+                    cocherasEditadasDto[cocheraDtoEditada.IndiceColeccion]= cocheraDtoEditada;
+                    //guardarCochera(cocheraDtoEditada);
+                    //if (cochera is CocheraMovil)
+                    //{
+                    //    ((CocheraMovil)cochera).IdEspacio = idEspacio;
+                    //    ((CocheraMovil)cochera).IdCocheraMovil = idCocheraEditada;
+                    //    cocheraMovilBL.Guardar((CocheraMovil)cochera);
+
+                    //}
+                    //else
+                    //{
+                    //    ((CocheraFija)cochera).IdEspacio = idEspacio;
+                    //    ((CocheraFija)cochera).IdCocheraFija = idCocheraEditada;
+                    //    cocheraFijaBL.Guardar((CocheraFija)cochera);
+                    //}
                 }
                 this.Close();
             }
@@ -108,23 +128,52 @@ namespace SistemaEstacionamiento
             catch (Exception ex)
             {
                 System.Diagnostics.Debugger.Log(1,"error",ex.Message);
+                MessageBox.Show(ex.Message);
                 MessageBox.Show(ex.StackTrace);
+
             }
         }
 
-        private void guardarCochera(Espacio cochera)
+        private void guardarCochera(CocheraDto cocheraDto)
         {
-            if (cochera is CocheraFija)
-            {
-                cocheraFijaBL.Guardar((CocheraFija)cochera);
-            }
-            else
-            {
-                cocheraMovilBL.Guardar((CocheraMovil)cochera);
-            }
+
+            cocherasEditadasDto.Add(cocheraDto);
+            int index = cocherasEditadasDto.IndexOf(cocheraDto);
+            cocherasEditadasDto[index].IndiceColeccion = index;
+            //if (cocheraDto.TipoCocheraEnum == Constantes.TipoCochera.Fija)
+            //{
+
+            //    // playaEditada.AgregarEspacio(cochera);
+            //    //CocheraDto cocheraDto = new CocheraDto();
+            //    //cocheraDto.Tamano = cochera.Tamano;
+            //    //cocheraDto.Piso = cochera.Piso;
+            //    //cocheraDto.PorcentajeValor = cochera.PorcentajeValor;
+            //    //cocheraDto.TipoCocheraEnum = Constantes.TipoCochera.Fija;
+            //    //cocheraDto.EstadoColeccion = Constantes.EstadosColeccion.Agregado;
+            //    cocherasEditadasDto.Add(cocheraDto);
+            //    int index = cocherasEditadasDto.IndexOf(cocheraDto);
+            //    cocherasEditadasDto[index].IndiceColeccion = index;
+            //   // cocheraFijaBL.Guardar((CocheraFija)cochera);
+            //    //
+            //}
+            //else
+            //{
+            //    //CocheraDto cocheraDto = new CocheraDto();
+            //    //cocheraDto.Tamano = cochera.Tamano;
+            //    //cocheraDto.Piso = cochera.Piso;
+            //    //cocheraDto.PorcentajeValor = cochera.PorcentajeValor;
+            //    //cocheraDto.TipoCocheraEnum = Constantes.TipoCochera.Movil;
+            //    //cocheraDto.EstadoColeccion = Constantes.EstadosColeccion.Agregado;
+            //    cocherasEditadasDto.Add(cocheraDto);
+            //    int index = cocherasEditadasDto.IndexOf(cocheraDto);
+            //    cocherasEditadasDto[index].IndiceColeccion = index;
+            //    //playaEditada.AgregarEspacio(cochera);
+            //    // cocheraMovilBL.Guardar((CocheraMovil)cochera);
+
+            //}
         }
 
-        void LlenarObjetoCochera(Espacio cochera)
+        void LlenarObjetoCochera(CocheraDto cochera)
         {
 
             if (textBox1.Text != "" && comboBox1.SelectedItem != null && textBox3.Text != "")
@@ -132,7 +181,9 @@ namespace SistemaEstacionamiento
                 cochera.Piso = int.Parse(textBox1.Text);
                 cochera.PorcentajeValor = int.Parse(textBox3.Text);
                 cochera.Tamano = comboBox1.SelectedItem.ToString();
-              
+                cochera.IdPlaya = playaEditada.IdPlaya;
+
+
             }
             else
             {
@@ -147,6 +198,11 @@ namespace SistemaEstacionamiento
             textBox3.Text = "";
             comboBox1.Text = "";
             comboBox2.Text = "";
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

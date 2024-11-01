@@ -17,16 +17,20 @@ namespace BL
         public Vehiculo Vehiculo { get; set; }
         public int IdCocheraFija { get; set; }
         public int IdCocheraMovil { get; set; }
+        public int IdPlaya { get; set; }
+        public Constantes.EstadosColeccion EstadoColeccion { get; set; }
+        public int IndiceColeccion { get; set; }
+        public Constantes.TipoCochera TipoCocheraEnum { get; set; }
 
         public string TipoCochera 
         { 
             get 
             { 
-                if(IdCocheraFija != 0)
+                if(Constantes.TipoCochera.Fija==TipoCocheraEnum)
                 {
                     return "Cochera Fija";
                 }
-                else if (IdCocheraMovil != 0)
+                else if (Constantes.TipoCochera.Movil == TipoCocheraEnum)
                 {
                     return "Cochera Movil";
                 }

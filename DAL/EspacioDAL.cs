@@ -24,7 +24,7 @@ namespace DAL
             if (espacio.IdEspacio== 0)
             {
                 espacio.IdEspacio = ProximoId();
-                string query = "INSERT INTO Espacio (Id_Espacio,Piso, Porcentaje_Valor, Tamano, id_vehiculo, id_playa) VALUES (" + espacio.IdEspacio + ", " + espacio.Piso + ", " + espacio.PorcentajeValor + ",'" + espacio.Tamano + "' , "+1+","+1+")";
+                string query = "INSERT INTO Espacio (Id_Espacio,Piso, Porcentaje_Valor, Tamano, id_vehiculo, id_playa) VALUES (" + espacio.IdEspacio + ", " + espacio.Piso + ", " + espacio.PorcentajeValor + ",'" + espacio.Tamano + "' , "+1+","+ espacio.IdPlaya+")";
                 DAO dao = new DAO();
                 return dao.ExecuteNonQuery(query);
             }

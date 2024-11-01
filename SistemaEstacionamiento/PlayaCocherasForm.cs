@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static BE.Constantes;
 
 namespace SistemaEstacionamiento
 {
@@ -45,6 +46,8 @@ namespace SistemaEstacionamiento
             dataGridView1.Columns["IdCocheraFija"].Visible = false;
             dataGridView1.Columns.Add("TipoCochera", "Tipo Cochera");
             dataGridView1.Columns["TipoCochera"].Width = 100;
+            dataGridView1.Columns.Add("IndiceColeccion", "IndiceColeccion");
+            dataGridView1.Columns["IndiceColeccion"].Visible = false;
             dataGridView1.RowHeadersVisible = false;
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
@@ -52,12 +55,15 @@ namespace SistemaEstacionamiento
             dataGridView1.MultiSelect = false;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
+            
             if (playaEditada != null)
             {
                 cargarDatos(playaEditada);
-                Actualizar();
+                InicializarBusquedaCocheras();
             }
         }
+
+   
 
         private void cargarDatos(Playa playaEditada)
         {
@@ -70,28 +76,28 @@ namespace SistemaEstacionamiento
         // agregarCochera
         private void button1_Click(object sender, EventArgs e)
         {
-            CocherasForm cForm = new CocherasForm();
-            cForm.MinimizeBox = false;
-            cForm.MaximizeBox = false;
-            cForm.ShowDialog(this);
+            CocherasForm cocherasForm = new CocherasForm();
+            cocherasForm.MinimizeBox = false;
+            cocherasForm.MaximizeBox = false;
+            cocherasForm.playaEditada = playaEditada;
+            cocherasForm.cocherasEditadasDto = cocheraDtos;
+            cocherasForm.ShowDialog(this);
             Actualizar();
 
         }
 
         private void Actualizar()
         {
-            
             dataGridView1.Rows.Clear();
-            foreach (CocheraDto cochera in obtenerCocheras())
+            foreach (CocheraDto cochera in cocheraDtos.Where( x=> x.EstadoColeccion  != Constantes.EstadosColeccion.Eliminado))
             {
-                 dataGridView1.Rows.Add(cochera.IdEspacio, cochera.Piso, cochera.Tamano, cochera.PorcentajeValor, cochera.IdCocheraMovil, cochera.IdCocheraFija,cochera.TipoCochera);
+                    dataGridView1.Rows.Add(cochera.IdEspacio, cochera.Piso, cochera.Tamano, cochera.PorcentajeValor, cochera.IdCocheraMovil, cochera.IdCocheraFija, cochera.TipoCochera, cochera.IndiceColeccion);
             }
         }
 
-        private List<CocheraDto> obtenerCocheras()
+        public void InicializarBusquedaCocheras()
         {
-
-            cocheraDtos.Clear();
+          //  cocheraDtos.Clear();
             foreach (var item in movilBL.ListarPorPlaya(playaEditada.IdPlaya))
             {
                 CocheraDto cocheraDto = new CocheraDto();
@@ -100,7 +106,11 @@ namespace SistemaEstacionamiento
                 cocheraDto.Tamano = item.Tamano;
                 cocheraDto.Piso = item.Piso;
                 cocheraDto.IdCocheraMovil = item.IdCocheraMovil;
+                cocheraDto.EstadoColeccion = Constantes.EstadosColeccion.SinCambio;
+                cocheraDto.TipoCocheraEnum = Constantes.TipoCochera.Movil;
                 cocheraDtos.Add(cocheraDto);
+                int index = cocheraDtos.IndexOf(cocheraDto);
+                cocheraDtos[index].IndiceColeccion = index;
             }
             foreach (var item in fijaBL.ListarPorPlaya(playaEditada.IdPlaya))
             {
@@ -110,18 +120,29 @@ namespace SistemaEstacionamiento
                 cocheraDto.Tamano = item.Tamano;
                 cocheraDto.Piso = item.Piso;
                 cocheraDto.IdCocheraFija = item.IdCocheraFija;
+                cocheraDto.EstadoColeccion = Constantes.EstadosColeccion.SinCambio;
+                cocheraDto.TipoCocheraEnum = Constantes.TipoCochera.Fija;
                 cocheraDtos.Add(cocheraDto);
+                int index = cocheraDtos.IndexOf(cocheraDto);
+                cocheraDtos[index].IndiceColeccion = index;
             }
-            return cocheraDtos;
+
+            foreach (CocheraDto cochera in cocheraDtos)
+            {
+                dataGridView1.Rows.Add(cochera.IdEspacio, cochera.Piso, cochera.Tamano, cochera.PorcentajeValor, cochera.IdCocheraMovil, cochera.IdCocheraFija, cochera.TipoCochera, cochera.IndiceColeccion);
+            }
         }
 
         // editar cochera
         private void button2_Click(object sender, EventArgs e)
         {
-            CocherasForm cForm = new CocherasForm(int.Parse(dataGridView1.SelectedRows[0].Cells["IdEspacio"].Value.ToString()));
-            cForm.MinimizeBox = false;
-            cForm.MaximizeBox = false;
-            cForm.ShowDialog(this);
+            CocherasForm cocherasForm = new CocherasForm();
+            cocherasForm.MinimizeBox = false;
+            cocherasForm.MaximizeBox = false;
+            cocherasForm.playaEditada = playaEditada;
+            cocherasForm.cocheraDtoEditada = cocheraDtos[int.Parse(dataGridView1.SelectedRows[0].Cells["IndiceColeccion"].Value.ToString())];
+            cocherasForm.cocherasEditadasDto =cocheraDtos;
+            cocherasForm.ShowDialog(this);
             Actualizar();
         }
         /// <summary>
@@ -131,19 +152,26 @@ namespace SistemaEstacionamiento
         /// <param name="e"></param>
         private void button3_Click(object sender, EventArgs e)
         {
-            CocheraDto cochera = cocheraDtos.FirstOrDefault(x => x.IdEspacio == int.Parse(dataGridView1.SelectedRows[0].Cells["IdEspacio"].Value.ToString()));
-            if (cochera.IdCocheraMovil != 0)
-            {
-               CocheraMovil cm = movilBL.Obtener(cochera.IdCocheraMovil);
-               movilBL.Eliminar(cm);
-            }
-            else
-            {
-                CocheraFija cf = fijaBL.Obtener(cochera.IdCocheraFija);
-                fijaBL.Eliminar(cf);
-            }
+            cocheraDtos[int.Parse(dataGridView1.SelectedRows[0].Cells["IndiceColeccion"].Value.ToString())].EstadoColeccion=Constantes.EstadosColeccion.Eliminado;
+            //CocheraDto cochera = cocheraDtos.FirstOrDefault(x => x.IndiceColeccion == int.Parse(dataGridView1.SelectedRows[0].Cells["IndiceColeccion"].Value.ToString()));
+            //if (cochera.IdCocheraMovil != 0)
+            //{
+            //    //CocheraMovil cm = movilBL.Obtener(cochera.IdCocheraMovil);
+            //    cocheraDtos.
+            //  // movilBL.Eliminar(cm);
+            //}
+            //else
+            //{
+            //    CocheraFija cf = fijaBL.Obtener(cochera.IdCocheraFija);
+            //    //fijaBL.Eliminar(cf);
+            //}
 
             Actualizar();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -18,6 +18,8 @@ namespace BL
             return EspacioDAL.Obtener(pId);
         }
 
+        
+
         public List<Espacio> Listar()
         {
             return EspacioDAL.Listar();

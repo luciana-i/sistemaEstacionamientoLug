@@ -65,8 +65,7 @@ namespace DAL
 
         }
 
- 
-
+       
         public static List<CocheraFija> Listar()
         {
             string query = "SELECT * FROM Cochera_Fija c INNER JOIN Espacio e ON c.Id_espacio=e.Id_Espacio";

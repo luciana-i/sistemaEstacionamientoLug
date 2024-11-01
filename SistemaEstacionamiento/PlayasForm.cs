@@ -24,7 +24,6 @@ namespace SistemaEstacionamiento
 
         private void PlayasForm_Load(object sender, EventArgs e)
         {
-            CocherasButton.Enabled = editando;
             dataGridView1.Columns.Add("IdPlaya", "IdPlaya");
             dataGridView1.Columns["IdPlaya"].Visible = false;
             dataGridView1.Columns.Add("Nombre", "Nombre");
@@ -77,7 +76,6 @@ namespace SistemaEstacionamiento
                     VaciarTextbox();
                     playaBL.Guardar(playa);
                     editando = false;
-                    CocherasButton.Enabled = editando;
                 }
                 Actualizar();
             }
@@ -95,24 +93,12 @@ namespace SistemaEstacionamiento
 
         private void VaciarTextbox()
         {
-            textBox1.Text = "";
-            textBox2.Text = "";
-            textBox3.Text = "";
-            textBox4.Text = "";
+           
         }
 
         void LlenarObjetoPlaya(Playa playa)
         {
-            if(textBox1.Text != "" && textBox2.Text!="" && textBox3.Text!="" && textBox4.Text != "")
-            {
-                playa.Nombre = textBox1.Text;
-                playa.Direccion = textBox2.Text;
-                playa.HoraApertura = TimeSpan.Parse(textBox3.Text);
-                playa.HoraCierre = TimeSpan.Parse(textBox4.Text);
-            }else
-            {
-                throw new BL.Excepciones.IcompleteException("Debe completar todos los campos para poder guardar los datos");
-            }
+            
            
         }
         /*
@@ -183,11 +169,9 @@ namespace SistemaEstacionamiento
         private void button1_Click(object sender, EventArgs e)
         {
             PlayaCocherasForm pcForm = new PlayaCocherasForm();
-            //pcForm.playaEditada = playaBL.Obtener(int.Parse(dataGridView1.SelectedRows[0].Cells["IdPlaya"].Value.ToString()));
             pcForm.MinimizeBox = false;
             pcForm.MaximizeBox = false;
-            pcForm.ShowDialog();
-            Actualizar();
+            pcForm.Show();
         }
     }
 }
