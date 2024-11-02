@@ -19,6 +19,13 @@ namespace SistemaEstacionamiento
         VehiculoBL vehiculoBL = new VehiculoBL();
         TipoVehiculoBL tipoVehiculoBL = new TipoVehiculoBL();
         bool editando = false;
+        Espacio espacio;
+        EspacioBL espacioBL = new EspacioBL();
+        CocheraFijaBL fijaBL = new CocheraFijaBL();
+        CocheraMovilBL movilBL = new CocheraMovilBL();
+        Vehiculo vehiculo;
+        List<Espacio> ListaEspacios = new List<Espacio>();
+        public Playa playaEditada { get; set; }
         public VehiculosForm()
         {
             InitializeComponent();
@@ -26,25 +33,15 @@ namespace SistemaEstacionamiento
 
         private void VehiculosForm_Load(object sender, EventArgs e)
         {
-            dataGridView1.Columns.Add("IdVehiculo", "IdVehiculo");
-            dataGridView1.Columns["IdVehiculo"].Visible = false;
-            dataGridView1.Columns.Add("Patente", "Patente");
-            dataGridView1.Columns["Patente"].Width = 150;
-            dataGridView1.Columns.Add("Abono", "Abono");
-            dataGridView1.Columns["Abono"].Width = 150;
-            dataGridView1.Columns.Add("IdTipoVehiculo", "Tipo Vehiculo");
-            dataGridView1.Columns["IdTipoVehiculo"].Width = dataGridView1.Width - 450;
-            dataGridView1.RowHeadersVisible = false;
-            dataGridView1.AllowUserToAddRows = false;
-            dataGridView1.AllowUserToDeleteRows = false;
-            dataGridView1.EditMode = DataGridViewEditMode.EditProgrammatically;
-            dataGridView1.MultiSelect = false;
-            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
+            
+            comboBox4.DataSource = vehiculoBL.ListarVehiculosSinEstacionar();
+
+            dataGridView1.Hide();
             llenarCombo();
             //comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
 
-            Actualizar();
+            //Actualizar();
         }
 
         private void llenarCombo()
@@ -53,24 +50,25 @@ namespace SistemaEstacionamiento
             comboBox1.Items.AddRange(tipoVehiculoBL.Listar().ToArray());
         }
 
-        private void Actualizar()
-        {
-            dataGridView1.Rows.Clear();
-            foreach (Vehiculo vehiculo in vehiculoBL.Listar())
-            {
-                dataGridView1.Rows.Add(vehiculo.IdVehiculo, vehiculo.Patente, vehiculo.Abono, vehiculo.TipoVehiculo);
+        //private void Actualizar(Espacio espacios)
+        //{
+        //    dataGridView1.Rows.Clear();
+        //    foreach (Espacio espacio in espacios)
+        //    {
+        //        dataGridView1.Rows.Add(vehiculo.IdVehiculo, vehiculo.Patente, vehiculo.Abono, vehiculo.TipoVehiculo);
 
-            }
-        }
+        //    }
+        //}
 
         /***
          * guardar - actualizar
          */
         private void button2_Click_1(object sender, EventArgs e)
         {
+           
             try
             {
-                Vehiculo vehiculo = new Vehiculo();
+                vehiculo = new Vehiculo();
                 if (!editando)
                 {
                     LlenarObjetoVehiculo(vehiculo);
@@ -86,7 +84,14 @@ namespace SistemaEstacionamiento
                     editando = false;
 
                 }
-                Actualizar();
+                MessageBox.Show("Agregaste con exito el vehiculo con patente: " + vehiculo.Patente + " ahora elegi la cochera " + comboBox3.SelectedText);
+                if(comboBox3.SelectedItem == "Fija")
+                {
+                    espacio = new CocheraFija();
+                }else
+                    espacio = new CocheraMovil();
+                dataGridView1.Show();
+                ActualizarCocheras();
             }
             catch (IcompleteException ex)
             {
@@ -96,6 +101,78 @@ namespace SistemaEstacionamiento
             {
                 MessageBox.Show(ex.StackTrace);
             }
+           
+        }
+
+        private void ActualizarCocheras()
+        {
+            columnasDGV();
+            if (espacio is CocheraFija)
+            {
+                List<CocheraFija> lista = fijaBL.ListarPorPlaya(playaEditada.IdPlaya);
+
+                dataGridView1.Rows.Clear();
+                ListaEspacios.AddRange(lista);
+                
+                foreach (CocheraFija cochera in lista.Where(x => x.Vehiculo == null).Cast<Espacio>().ToList())
+                {
+                    dataGridView1.Columns.Add("IdCocheraFija", "IdCocheraFija");
+                    dataGridView1.Columns["IdCocheraFija"].Visible = false;
+                    dataGridView1.Rows.Add(cochera.IdEspacio, cochera.Piso, cochera.Piso, cochera.Tamano, cochera.PorcentajeValor, cochera.IdCocheraFija);
+                }
+               
+            }
+            if (espacio is CocheraMovil)
+            {
+                List<CocheraMovil> lista = movilBL.ListarPorPlaya(playaEditada.IdPlaya);
+
+                dataGridView1.Rows.Clear();
+                ListaEspacios.AddRange(lista);
+                foreach (CocheraMovil cochera in lista.Where(x => x.Vehiculo == null).Cast<Espacio>().ToList())
+                {
+                    dataGridView1.Columns.Add("IdCocheraMovil", "IdCocheraMovil");
+                    dataGridView1.Columns["IdCocheraMovil"].Visible = false;
+                    dataGridView1.Rows.Add(cochera.IdEspacio, cochera.Piso, cochera.Piso, cochera.Tamano, cochera.PorcentajeValor, cochera.IdCocheraMovil);
+                }
+            }
+
+            
+        }
+
+
+        private void columnasDGV()
+        {
+            dataGridView1.Columns.Add("IdEspacio", "IdEspacio");
+            dataGridView1.Columns["IdEspacio"].Visible = false;
+            dataGridView1.Columns.Add("Piso", "Piso");
+            dataGridView1.Columns["Piso"].Width = 150;
+            dataGridView1.Columns.Add("Tamano", "Tamaño");
+            dataGridView1.Columns.Add("PorcentajeValor", "PorcentajeValor"); 
+            dataGridView1.Columns.Add("IdCocheraMovil", "IdCocheraMovil");
+            dataGridView1.Columns["IdCocheraMovil"].Visible = false;
+            dataGridView1.Columns.Add("IdCocheraFija", "IdCocheraFija");
+            dataGridView1.Columns["IdCocheraFija"].Visible = false;
+            dataGridView1.RowHeadersVisible = false;
+            dataGridView1.AllowUserToAddRows = false;
+            dataGridView1.AllowUserToDeleteRows = false;
+            dataGridView1.EditMode = DataGridViewEditMode.EditProgrammatically;
+            dataGridView1.MultiSelect = false;
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            //switch (vehiculo.TipoVehiculo.Nombre)
+            //{
+            //    case "Moto":
+            //        Código para el caso "Moto"
+            //        break;
+
+            //        Puedes agregar otros casos aquí
+            //    case "Auto":
+            //        Código para el caso "Auto"
+            //        break;
+
+            //    default:
+            //        Código para el caso por defecto
+            //        break;
+            //}
         }
 
         private void VaciarTextbox()
@@ -107,7 +184,7 @@ namespace SistemaEstacionamiento
 
         private void LlenarObjetoVehiculo(Vehiculo vehiculo)
         {
-            if (textBox1.Text != "" && textBox2.Text != "" && comboBox1.SelectedIndex>-1)
+            if (textBox1.Text != "" && textBox2.Text != "" && comboBox1.SelectedIndex>-1 && comboBox3.SelectedIndex > -1)
             {
                 vehiculo.Patente = textBox1.Text;
                 vehiculo.Abono = textBox2.Text;
@@ -122,19 +199,7 @@ namespace SistemaEstacionamiento
 
         private void button4_Click(object sender, EventArgs e)
         {
-            int id = int.Parse(dataGridView1.SelectedRows[0].Cells["IdVehiculo"].Value.ToString());
-            if (id > 0)
-            {
-                if (Preguntar())
-                {
-                    vehiculoBL.Eliminar(id);
-                    Actualizar();
-                }
-            }
-            else
-            {
-                MessageBox.Show("No seleccionaste ninguna playa para eliminar");
-            }
+            this.Close();
         }
 
         private bool Preguntar()
@@ -151,17 +216,62 @@ namespace SistemaEstacionamiento
             }
 
         }
-        //edicion
+        //Ingreso vehiculo Seleccionar cochera TODO: CALCULO PLATA Y HORA
         private void button3_Click(object sender, EventArgs e)
         {
-            editando = true;
-            textBox1.Text = dataGridView1.SelectedRows[0].Cells["Patente"].Value.ToString();
-            textBox2.Text = dataGridView1.SelectedRows[0].Cells["Abono"].Value.ToString();
-            //comboBox1.SelectedText = ((TipoVehiculo)(dataGridView1.SelectedRows[0].Cells["IdTipoVehiculo"].Value)).Nombre;
-            int idTipoVehiculo = ((TipoVehiculo)dataGridView1.SelectedRows[0].Cells["IdTipoVehiculo"].Value).IdTipoVehiculo;
-            comboBox1.SelectedItem = comboBox1.Items
-                .OfType<TipoVehiculo>()
-                .FirstOrDefault(item => item.IdTipoVehiculo == idTipoVehiculo);
+            Espacio espacioAEditar = ListaEspacios.FirstOrDefault(x => x.IdEspacio == int.Parse(dataGridView1.SelectedRows[0].Cells["IdEspacio"].Value.ToString()));
+         
+            if (espacioAEditar is CocheraFija)
+            {
+                if(Preguntar("El valor que debe abonar es: " + vehiculo.TipoVehiculo.ValorEstadia + "¿Desea abonar por adelantado?"))
+                {
+                    vehiculo.Abono = "Si";
+                }else
+                {
+                    vehiculo.Abono = "No";
+                }
+                (espacioAEditar as CocheraFija).ValorMes = vehiculo.TipoVehiculo.ValorEstadia;
+                fijaBL.Guardar(espacioAEditar as CocheraFija);
+
+
+            }
+            if (espacioAEditar is CocheraMovil)
+            {
+                MessageBox.Show("El valor por hora es: " + vehiculo.TipoVehiculo.ValorHora + "Si se pasa de las 5 horas, cobrara estadia");
+                (espacioAEditar as CocheraMovil).HoraEntrada = DateTime.Now.TimeOfDay;
+                movilBL.Guardar(espacioAEditar as CocheraMovil);
+            }
+            espacioAEditar.Vehiculo = vehiculo;
+            espacioBL.Guardar(espacioAEditar);
+            this.Close();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (comboBox2.SelectedItem == "Fija")
+            {
+                espacio = new CocheraFija();
+            }
+            else
+                espacio = new CocheraMovil();
+            vehiculo = comboBox4.SelectedItem as Vehiculo;
+            dataGridView1.Show();
+            ActualizarCocheras();
+        }
+
+        private bool Preguntar(String mensaje)
+        {
+            DialogResult result = MessageBox.Show(mensaje, "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
         }
     }
 }

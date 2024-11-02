@@ -88,6 +88,7 @@ namespace DAL
             return listaCocheraFijas;
         }
 
+
         public static List<CocheraFija> ListarPorPlaya(int id)
         {
             string query = "SELECT * FROM Cochera_Fija c INNER JOIN Espacio e ON c.Id_espacio=e.Id_Espacio WHERE e.Id_playa = " + id;

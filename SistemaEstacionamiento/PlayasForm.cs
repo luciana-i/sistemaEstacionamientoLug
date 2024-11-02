@@ -128,5 +128,23 @@ namespace SistemaEstacionamiento
             pcForm.Show();
             Actualizar();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows[0].Cells["IdPlaya"].Value.ToString() != "")
+            {
+                CocheraVehiculoForm cvForm = new CocheraVehiculoForm();
+                cvForm.MinimizeBox = false;
+                cvForm.MaximizeBox = false;
+                Playa playa = playaBL.Obtener(int.Parse(dataGridView1.SelectedRows[0].Cells["IdPlaya"].Value.ToString()));
+                cvForm.playaEditada = playa;
+                cvForm.Show();
+                Actualizar();
+            }else
+            {
+                MessageBox.Show("No seleccionaste ninguna playa");
+            }
+           
+        }
     }
 }

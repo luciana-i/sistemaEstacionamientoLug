@@ -52,6 +52,12 @@
     <Compile Include="CocherasForm.Designer.cs">
       <DependentUpon>CocherasForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="CocheraVehiculoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CocheraVehiculoForm.Designer.cs">
+      <DependentUpon>CocheraVehiculoForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MenuInicial.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -81,6 +87,9 @@
     <Compile Include="VehiculosForm.Designer.cs">
       <DependentUpon>VehiculosForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="CocheraVehiculoForm.resx">
+      <DependentUpon>CocheraVehiculoForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MenuInicial.resx">
       <DependentUpon>MenuInicial.cs</DependentUpon>
     </EmbeddedResource>

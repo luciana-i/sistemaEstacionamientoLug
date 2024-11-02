@@ -87,6 +87,28 @@ namespace DAL
             return listaVehiculos;
         }
 
+        public static List<Vehiculo> ListarVehiculosSinEstacionar()
+        {
+            string query = "SELECT v.* FROM Vehiculo v LEFT JOIN Espacio e ON v.id_vehiculo = e.id_vehiculo WHERE e.id_vehiculo IS NULL";
+
+            DAO dao = new DAO();
+
+            DataSet dset = dao.ExecuteDataSet(query);
+            List<Vehiculo> listaVehiculos = new List<Vehiculo>();
+
+            if (dset.Tables.Count > 0 && dset.Tables[0].Rows.Count > 0)
+            {
+                foreach (DataRow dr in dset.Tables[0].Rows)
+                {
+                    Vehiculo vehiculo = new Vehiculo(int.Parse(dr["id_Vehiculo"].ToString()));
+                    LlenarObjeto(vehiculo, dr);
+                    listaVehiculos.Add(vehiculo);
+                }
+
+            }
+            return listaVehiculos;
+        }
+
         internal static void LlenarObjeto(Vehiculo vehiculo, DataRow dr)
         {
             vehiculo.Patente = dr["Patente"].ToString();

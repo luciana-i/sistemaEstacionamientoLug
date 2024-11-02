@@ -94,8 +94,18 @@ namespace DAL
             espacio.IdEspacio = int.Parse(dr["id_espacio"].ToString());
             espacio.Piso = int.Parse(dr["Piso"].ToString());
             Vehiculo v  = new Vehiculo();
-            v.IdVehiculo = 1;
-            espacio.Vehiculo = v;
+           // v.IdVehiculo = int.Parse(dr["id_vehiculo"].ToString());
+            if (dr["id_vehiculo"] != DBNull.Value && dr["id_vehiculo"].ToString() != "{}")
+            {
+                int idVehiculo = Convert.ToInt32(dr["id_vehiculo"]);
+                espacio.Vehiculo = v;
+            }
+            else
+            {
+                espacio.Vehiculo = null;
+            }
+
+           
         }
 
         //public static List<Espacio> ListarPorPlayaId(int idPlaya)

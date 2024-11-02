@@ -20,6 +20,11 @@ namespace BL
             return VehiculoDAL.Listar();
         }
 
+        public List<Vehiculo> ListarVehiculosSinEstacionar()
+        {
+            return VehiculoDAL.ListarVehiculosSinEstacionar();
+        }
+
         public int Guardar(Vehiculo vehiculo)
         {
             return VehiculoDAL.Guardar(vehiculo);
@@ -29,5 +34,7 @@ namespace BL
         {
             return VehiculoDAL.Eliminar(id);
         }
+
+        
     }
 }
