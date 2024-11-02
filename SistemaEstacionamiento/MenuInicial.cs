@@ -40,12 +40,20 @@ namespace SistemaEstacionamiento
 
         private void listadoToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            VehiculosForm vehiculosForm = new VehiculosForm();
-            vehiculosForm.MdiParent = this;
-            vehiculosForm.WindowState = FormWindowState.Maximized;
-            vehiculosForm.MinimizeBox = false;
-            vehiculosForm.MaximizeBox = false;
-            vehiculosForm.Show();
+            //VehiculosForm vehiculosForm = new VehiculosForm();
+            //vehiculosForm.MdiParent = this;
+            //vehiculosForm.WindowState = FormWindowState.Maximized;
+            //vehiculosForm.MinimizeBox = false;
+            //vehiculosForm.MaximizeBox = false;
+            //vehiculosForm.Show();
+
+            PlayasForm playasForm = new PlayasForm();
+            playasForm.MdiParent = this;
+            playasForm.WindowState = FormWindowState.Maximized;
+            playasForm.MinimizeBox = false;
+            playasForm.MaximizeBox = false;
+            playasForm.sinEdicion=true;
+            playasForm.Show();
         }
     }
 }

@@ -28,12 +28,6 @@ namespace BE
 
             }
         }
-
-        public Espacio ObtenerPlayaPorIndice(int x)
-        { 
-            return ListaEspacios[x]; 
-        }
-
         public void AgregarEspacio(Espacio espacio, Constantes.EstadosColeccion estado = Constantes.EstadosColeccion.Agregado)
         {
            
@@ -59,14 +53,6 @@ namespace BE
             ListaEspacios[espacio.IndiceColeccion] = espacio;
         }
 
-        internal List<Espacio> EspaciosColeccion
-        {
-            get
-            {
-                return ListaEspacios;
-            }
-        }
-
         public Playa (int idPlaya)
         {
             IdPlaya = idPlaya;
@@ -86,14 +72,6 @@ namespace BE
         IEnumerator IEnumerable.GetEnumerator()
         {
             return ((IEnumerable)ListaEspacios).GetEnumerator();
-        }
-
-        public void AgregarEspacioCargaInicial(Espacio espacio, Constantes.EstadosColeccion estado = Constantes.EstadosColeccion.SinCambio)
-        {
-
-            ListaEspacios.Add(espacio);
-            espacio.EstadoColeccion = estado;
-            espacio.IndiceColeccion = ListaPrivadaEspacios.IndexOf(espacio);
         }
     }
 }

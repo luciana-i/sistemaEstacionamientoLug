@@ -57,12 +57,11 @@ namespace SistemaEstacionamiento
             dataGridView1.MultiSelect = false;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
+                     
+            cargarDatos(playaEditada);
             
-            if (playaEditada != null)
-            {
-                cargarDatos(playaEditada);
+            if (playaEditada.IdPlaya != 0)
                 InicializarBusquedaCocheras();
-            }
         }
 
    
@@ -182,17 +181,27 @@ namespace SistemaEstacionamiento
         /// <param name="e"></param>
         private void button4_Click(object sender, EventArgs e)
         {
-            foreach(var item in cocheraDtos)
+            LlenarObjetoPlaya();
+           
+            foreach (var item in cocheraDtos)
             {
                 Espacio espacio = item.TransformarCocheraDtoEnEspacio(item);
                 playaEditada.AgregarEspacio(espacio, espacio.EstadoColeccion);
             }
-            
-            
+
             playaBL.Guardar(playaEditada);
+
             MessageBox.Show("Se modificaron los datos satisfactoriamente");
             this.Close();
 
+        }
+
+        private void LlenarObjetoPlaya()
+        {
+            playaEditada.Nombre = textBox1.Text;
+            playaEditada.Direccion = textBox2.Text;
+            playaEditada.HoraApertura = TimeSpan.Parse(textBox3.Text.ToString());
+            playaEditada.HoraCierre = TimeSpan.Parse(textBox4.Text.ToString());
         }
     }
 }

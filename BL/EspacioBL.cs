@@ -25,6 +25,11 @@ namespace BL
             return EspacioDAL.Listar();
         }
 
+        //public List<Espacio> ListarPorPlayaId(int idPlaya)
+        //{
+        //    return EspacioDAL.ListarPorPlayaId(idPlaya);
+        //}
+
         public int Guardar(Espacio espacio)
         {
             return EspacioDAL.Guardar(espacio);
@@ -32,6 +37,7 @@ namespace BL
 
         public int Eliminar(Espacio espacio)
         {
+
             return EspacioDAL.Eliminar(espacio);
         }
     }

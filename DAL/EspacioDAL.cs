@@ -24,7 +24,7 @@ namespace DAL
             if (espacio.IdEspacio== 0)
             {
                 espacio.IdEspacio = ProximoId();
-                string query = "INSERT INTO Espacio (Id_Espacio,Piso, Porcentaje_Valor, Tamano, id_vehiculo, id_playa) VALUES (" + espacio.IdEspacio + ", " + espacio.Piso + ", " + espacio.PorcentajeValor + ",'" + espacio.Tamano + "' , "+1+","+ espacio.IdPlaya+")";
+                string query = "INSERT INTO Espacio (Id_Espacio,Piso, Porcentaje_Valor, Tamano, id_playa) VALUES (" + espacio.IdEspacio + ", " + espacio.Piso + ", " + espacio.PorcentajeValor + ",'" + espacio.Tamano + "' , "+ espacio.IdPlaya+")";
                 DAO dao = new DAO();
                 return dao.ExecuteNonQuery(query);
             }
@@ -97,5 +97,27 @@ namespace DAL
             v.IdVehiculo = 1;
             espacio.Vehiculo = v;
         }
+
+        //public static List<Espacio> ListarPorPlayaId(int idPlaya)
+        //{
+        //    string query = "SELECT * FROM Espacio WHERE id_playa="+ idPlaya;
+
+        //    DAO dao = new DAO();
+
+        //    DataSet dset = dao.ExecuteDataSet(query);
+        //    List<Espacio> listaEspacios = new List<Espacio>();
+
+        //    if (dset.Tables.Count > 0 && dset.Tables[0].Rows.Count > 0)
+        //    {
+        //        foreach (DataRow dr in dset.Tables[0].Rows)
+        //        {
+        //            Espacio espacio = new Espacio(int.Parse(dr["id_Espacio"].ToString()));
+        //            LlenarObjeto(espacio, dr);
+        //            listaEspacios.Add(espacio);
+        //        }
+
+        //    }
+        //    return listaEspacios;
+        //}
     }
 }

@@ -76,17 +76,40 @@ namespace BL
         }
 
   
-        public int Eliminar(int id)
+        public int Eliminar(int IdPlaya)
         {
-            return PlayaDAL.Eliminar(id);
+
+            List<CocheraFija> listaCocherasFijas = CocheraFijaDAL.ListarPorPlaya(IdPlaya);
+            if (listaCocherasFijas.Count > 0) 
+            {
+                CocheraFijaBL cocheraFijaBL = new CocheraFijaBL();
+                foreach (var item in listaCocherasFijas)
+                {
+                    cocheraFijaBL.Eliminar(item);
+                }
+            }
+
+            List<CocheraMovil> listaCocherasMoviles = CocheraMovilDAL.ListarPorPlaya(IdPlaya);
+            if (listaCocherasMoviles.Count > 0)
+            {
+                CocheraMovilBL cocheraMovilBl = new CocheraMovilBL();
+                foreach (var item in listaCocherasMoviles)
+                {
+                    cocheraMovilBl.Eliminar(item);
+                }
+            }
+
+            return PlayaDAL.Eliminar(IdPlaya);
+           
         }
 
-        public void EliminarEspacios(List<Espacio> ListaEspacios)
-        {
-            foreach (Espacio espacio in ListaEspacios)
-            {
-                EspacioDAL.Eliminar(espacio);
-            }
-        }
+        //internal void EliminarEspacios(List<Espacio> ListaEspacios)
+        //{
+        //    foreach (Espacio espacio in ListaEspacios)
+        //    {
+
+        //        EspacioDAL.Eliminar(espacio);
+        //    }
+        //}
     }
 }

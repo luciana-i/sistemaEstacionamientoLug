@@ -16,7 +16,8 @@ namespace SistemaEstacionamiento
     public partial class PlayasForm : Form
     {
         PlayaBL playaBL = new PlayaBL();
-        bool editando = false;
+
+        public bool sinEdicion= false;
         public PlayasForm()
         {
             InitializeComponent();
@@ -41,6 +42,13 @@ namespace SistemaEstacionamiento
             dataGridView1.MultiSelect = false;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
+            if (sinEdicion)
+            {
+                button1.Hide();
+                button4.Hide();
+                button3.Hide();
+            }
+
 
             Actualizar();
         }
@@ -55,64 +63,12 @@ namespace SistemaEstacionamiento
             }
         }
 
-        /***
-         * guardar - actualizar
-         */
-        private void button2_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                Playa playa = new Playa();
-                if (!editando)
-                {
-                    LlenarObjetoPlaya(playa);
-                    VaciarTextbox();
-                    playaBL.Guardar(playa);
-                }
-                else
-                {
-                    playa.IdPlaya = int.Parse(dataGridView1.SelectedRows[0].Cells["IdPlaya"].Value.ToString());
-                    LlenarObjetoPlaya(playa);
-                    VaciarTextbox();
-                    playaBL.Guardar(playa);
-                    editando = false;
-                }
-                Actualizar();
-            }
-            catch (IcompleteException  ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.StackTrace);
-            }
-            
-        
-        }
-
-        private void VaciarTextbox()
-        {
-           
-        }
-
-        void LlenarObjetoPlaya(Playa playa)
-        {
-            
-           
-        }
         /*
          boton de edicion
          */
         private void button3_Click(object sender, EventArgs e)
         {
-            //editando = true;
-            //textBox1.Text = dataGridView1.SelectedRows[0].Cells["Nombre"].Value.ToString();
-            //textBox2.Text = dataGridView1.SelectedRows[0].Cells["Direccion"].Value.ToString();
-            //textBox3.Text = dataGridView1.SelectedRows[0].Cells["HoraApertura"].Value.ToString();
-            //textBox4.Text = dataGridView1.SelectedRows[0].Cells["HoraCierre"].Value.ToString();
-            //CocherasButton.Enabled= editando;
-
+           
             PlayaCocherasForm pcForm = new PlayaCocherasForm();
             pcForm.playaEditada = playaBL.Obtener(int.Parse(dataGridView1.SelectedRows[0].Cells["IdPlaya"].Value.ToString()));
             pcForm.MinimizeBox = false;
@@ -123,7 +79,7 @@ namespace SistemaEstacionamiento
         }
 
         /*
-        boton de eliminar TODO: hay que eliminar los objetos Contenidos
+        boton de eliminar 
         */
         private void button4_Click(object sender, EventArgs e)
         {
@@ -134,6 +90,8 @@ namespace SistemaEstacionamiento
                     {
                         playaBL.Eliminar(id);
                         Actualizar();
+                        MessageBox.Show("Se eliminaron exitosamente los datos");
+                
                     }
                 }else
                 {
@@ -158,20 +116,17 @@ namespace SistemaEstacionamiento
 
         }
 
-        private void CocherasButton_Click(object sender, EventArgs e)
-        {
-            //EspaciosForm espaciosForm = new EspaciosForm();
-            //espaciosForm.MinimizeBox = false;
-            //espaciosForm.MaximizeBox = false;
-            //espaciosForm.Show();
-        }
+    
 
         private void button1_Click(object sender, EventArgs e)
         {
             PlayaCocherasForm pcForm = new PlayaCocherasForm();
             pcForm.MinimizeBox = false;
             pcForm.MaximizeBox = false;
+            Playa playa = new Playa();
+            pcForm.playaEditada = playa;
             pcForm.Show();
+            Actualizar();
         }
     }
 }

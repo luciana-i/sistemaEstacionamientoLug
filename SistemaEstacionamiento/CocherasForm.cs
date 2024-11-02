@@ -17,11 +17,11 @@ namespace SistemaEstacionamiento
 {
     public partial class CocherasForm : Form
     {
-        CocheraFijaBL cocheraFijaBL = new CocheraFijaBL();
-        CocheraMovilBL cocheraMovilBL = new CocheraMovilBL();
-        PlayaBL playaBL = new PlayaBL();
-        int idEspacio = 0;
-        int idCocheraEditada = 0;
+        //CocheraFijaBL cocheraFijaBL = new CocheraFijaBL();
+        //CocheraMovilBL cocheraMovilBL = new CocheraMovilBL();
+        //PlayaBL playaBL = new PlayaBL();
+        //int idEspacio = 0;
+        //int idCocheraEditada = 0;
         public CocheraDto cocheraDtoEditada;
         public List<CocheraDto> cocherasEditadasDto { get; set; }
         //public Playa playaEditada { get; set; }
