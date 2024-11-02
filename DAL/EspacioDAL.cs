@@ -37,9 +37,9 @@ namespace DAL
 
         }
 
-        public static int Eliminar(int id)
+        public static int Eliminar(Espacio espacio)
         {
-            string query = "DELETE Espacio WHERE Id_Espacio = " + id;
+            string query = "DELETE Espacio WHERE Id_Espacio = " + espacio.IdEspacio;
             DAO dao = new DAO();
             return dao.ExecuteNonQuery(query);
         }

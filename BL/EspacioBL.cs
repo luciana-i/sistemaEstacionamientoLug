@@ -30,9 +30,9 @@ namespace BL
             return EspacioDAL.Guardar(espacio);
         }
 
-        public int Eliminar(int id)
+        public int Eliminar(Espacio espacio)
         {
-            return EspacioDAL.Eliminar(id);
+            return EspacioDAL.Eliminar(espacio);
         }
     }
 }

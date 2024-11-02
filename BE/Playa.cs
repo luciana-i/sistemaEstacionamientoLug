@@ -23,10 +23,9 @@ namespace BE
         {
             get
             {
-                foreach (Espacio e in ListaPrivadaEspacios)
-                    if (e.EstadoColeccion != Constantes.EstadosColeccion.Eliminado && e.EstadoColeccion != Constantes.EstadosColeccion.Quitado)
-                        ListaPrivadaEspacios.Add(e);
+                
                 return ListaPrivadaEspacios;
+
             }
         }
 

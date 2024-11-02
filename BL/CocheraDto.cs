@@ -38,5 +38,31 @@ namespace BL
             } 
         }
 
+        public Espacio TransformarCocheraDtoEnEspacio(CocheraDto cocheraDto)
+        {
+            Espacio cochera;
+            if (cocheraDto.TipoCocheraEnum == Constantes.TipoCochera.Movil)
+            {
+                cochera = new CocheraMovil();
+                (cochera as CocheraMovil).IdCocheraMovil = cocheraDto.IdCocheraMovil;
+
+            }
+            else
+            {
+                cochera = new CocheraFija();
+                (cochera as CocheraFija).IdCocheraFija = cocheraDto.IdCocheraFija;
+            }
+            cochera.Piso = cocheraDto.Piso;
+            cochera.Tamano = cocheraDto.Tamano;
+            cochera.PorcentajeValor = cocheraDto.PorcentajeValor;
+            cochera.IdEspacio= cocheraDto.IdEspacio;
+            cochera.IdPlaya= cocheraDto.IdPlaya;
+            cochera.IndiceColeccion = cocheraDto.IndiceColeccion;
+            cochera.EstadoColeccion = cocheraDto.EstadoColeccion;
+
+            return cochera;
+
+        }
+
     }
 }

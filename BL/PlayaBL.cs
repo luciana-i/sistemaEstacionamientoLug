@@ -34,7 +34,8 @@ namespace BL
             bool acomodarIndices = false;
             lock (block) // esto previene la mutua exclusion 
             {
-                EspacioBL espacioBL = new EspacioBL();
+                CocheraFijaBL cocheraFijaBL = new CocheraFijaBL();
+                CocheraMovilBL cocheraMovilBL = new CocheraMovilBL();
                 for (int x = playa.ListaEspacios.Count - 1; x >= 0; x--)
                 {
                     switch (playa.ListaEspacios[x].EstadoColeccion)
@@ -42,16 +43,22 @@ namespace BL
                         case Constantes.EstadosColeccion.Agregado:
                         case Constantes.EstadosColeccion.Modificado:
                             playa.ListaEspacios[x].IdPlaya = playa.IdPlaya;
-                            espacioBL.Guardar(playa.ListaEspacios[x]);
+                            if(playa.ListaEspacios[x] is CocheraFija)
+                                cocheraFijaBL.Guardar((CocheraFija)playa.ListaEspacios[x]);
+                            else
+                                cocheraMovilBL.Guardar((CocheraMovil)playa.ListaEspacios[x]);
                             playa.ListaEspacios[x].EstadoColeccion = Constantes.EstadosColeccion.SinCambio;
                             break;
                         case Constantes.EstadosColeccion.Eliminado:
-                            espacioBL.Eliminar(playa.ListaEspacios[x].IdEspacio);
+                            if (playa.ListaEspacios[x] is CocheraFija)
+                                cocheraFijaBL.Eliminar((CocheraFija)playa.ListaEspacios[x]);
+                            else
+                                cocheraMovilBL.Eliminar((CocheraMovil)playa.ListaEspacios[x]);
                             playa.ListaEspacios.RemoveAt(playa.ListaEspacios[x].IndiceColeccion);
                             acomodarIndices = true;
                             break;
                         case Constantes.EstadosColeccion.Quitado:
-                            playa.ListaEspacios.RemoveAt(playa.ListaEspacios[x].IndiceColeccion);
+                          //  playa.ListaEspacios.RemoveAt(playa.ListaEspacios[x].IndiceColeccion);
                             acomodarIndices = true;
                             break;
                     }
@@ -78,7 +85,7 @@ namespace BL
         {
             foreach (Espacio espacio in ListaEspacios)
             {
-                EspacioDAL.Eliminar(espacio.IdEspacio);
+                EspacioDAL.Eliminar(espacio);
             }
         }
     }

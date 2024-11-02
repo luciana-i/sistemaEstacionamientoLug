@@ -37,7 +37,7 @@ namespace BL
         public int Eliminar(CocheraFija cochera)
         {
             CocheraFijaDAL.Eliminar(cochera.IdCocheraFija);
-            return EspacioDAL.Eliminar(cochera.IdEspacio);
+            return EspacioDAL.Eliminar(cochera);
         }
 
 

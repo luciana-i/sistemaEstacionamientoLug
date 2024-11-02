@@ -24,7 +24,7 @@ namespace SistemaEstacionamiento
         int idCocheraEditada = 0;
         public CocheraDto cocheraDtoEditada;
         public List<CocheraDto> cocherasEditadasDto { get; set; }
-        public Playa playaEditada { get; set; }
+        //public Playa playaEditada { get; set; }
        
         public CocherasForm()
         {
@@ -99,7 +99,8 @@ namespace SistemaEstacionamiento
                 else
                 {
                     LlenarObjetoCochera(cocheraDtoEditada);
-                    if(cocheraDtoEditada.EstadoColeccion != Constantes.EstadosColeccion.Agregado) // significa que si agrego algo y despues lo modifico, entonces no es un update, sigue siendo un insert
+                    //cocheraDtoEditada.IdEspacio = idEspacio;
+                    if (cocheraDtoEditada.EstadoColeccion != Constantes.EstadosColeccion.Agregado) // significa que si agrego algo y despues lo modifico, entonces no es un update, sigue siendo un insert
                              cocheraDtoEditada.EstadoColeccion = Constantes.EstadosColeccion.Modificado;
                     //cochera.IdEspacio = idEspacio;
                     VaciarTextbox();
@@ -181,7 +182,7 @@ namespace SistemaEstacionamiento
                 cochera.Piso = int.Parse(textBox1.Text);
                 cochera.PorcentajeValor = int.Parse(textBox3.Text);
                 cochera.Tamano = comboBox1.SelectedItem.ToString();
-                cochera.IdPlaya = playaEditada.IdPlaya;
+                //cochera.IdPlaya = playaEditada.IdPlaya;
 
 
             }

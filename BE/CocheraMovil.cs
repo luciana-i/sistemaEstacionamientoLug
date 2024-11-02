@@ -11,7 +11,7 @@ namespace BE
         public int IdCocheraMovil { get; set; }
         public TimeSpan HoraEntrada { get; set; }
         public TimeSpan HoraSalida { get; set; }
-        public int IdEspacio { get; set; }
+        public new int IdEspacio { get; set; }
 
         public CocheraMovil() { }
         public CocheraMovil(int id)

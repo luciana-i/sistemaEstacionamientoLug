@@ -21,6 +21,8 @@ namespace SistemaEstacionamiento
         EspacioBL espacioBL = new EspacioBL();
         CocheraMovilBL  movilBL = new CocheraMovilBL();
         CocheraFijaBL fijaBL = new CocheraFijaBL();
+
+        PlayaBL playaBL = new PlayaBL();
         List<CocheraDto> cocheraDtos = new List<CocheraDto>();
         public Playa playaEditada { get; set; }
         public PlayaCocherasForm()
@@ -79,7 +81,7 @@ namespace SistemaEstacionamiento
             CocherasForm cocherasForm = new CocherasForm();
             cocherasForm.MinimizeBox = false;
             cocherasForm.MaximizeBox = false;
-            cocherasForm.playaEditada = playaEditada;
+            //cocherasForm.playaEditada = playaEditada;
             cocherasForm.cocherasEditadasDto = cocheraDtos;
             cocherasForm.ShowDialog(this);
             Actualizar();
@@ -139,7 +141,7 @@ namespace SistemaEstacionamiento
             CocherasForm cocherasForm = new CocherasForm();
             cocherasForm.MinimizeBox = false;
             cocherasForm.MaximizeBox = false;
-            cocherasForm.playaEditada = playaEditada;
+            //cocherasForm.playaEditada = playaEditada;
             cocherasForm.cocheraDtoEditada = cocheraDtos[int.Parse(dataGridView1.SelectedRows[0].Cells["IndiceColeccion"].Value.ToString())];
             cocherasForm.cocherasEditadasDto =cocheraDtos;
             cocherasForm.ShowDialog(this);
@@ -172,6 +174,25 @@ namespace SistemaEstacionamiento
         private void button5_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+        /// <summary>
+        /// /GUARDA LA PLAYA
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button4_Click(object sender, EventArgs e)
+        {
+            foreach(var item in cocheraDtos)
+            {
+                Espacio espacio = item.TransformarCocheraDtoEnEspacio(item);
+                playaEditada.AgregarEspacio(espacio, espacio.EstadoColeccion);
+            }
+            
+            
+            playaBL.Guardar(playaEditada);
+            MessageBox.Show("Se modificaron los datos satisfactoriamente");
+            this.Close();
+
         }
     }
 }
