@@ -216,34 +216,43 @@ namespace SistemaEstacionamiento
             }
 
         }
-        //Ingreso vehiculo Seleccionar cochera TODO: CALCULO PLATA Y HORA
+        //Ingreso vehiculo Seleccionar cochera TODO: CALCULO PLATA
         private void button3_Click(object sender, EventArgs e)
         {
-            Espacio espacioAEditar = ListaEspacios.FirstOrDefault(x => x.IdEspacio == int.Parse(dataGridView1.SelectedRows[0].Cells["IdEspacio"].Value.ToString()));
-         
-            if (espacioAEditar is CocheraFija)
+            if (playaEditada.HoraCierre < DateTime.Now.TimeOfDay)
             {
-                if(Preguntar("El valor que debe abonar es: " + vehiculo.TipoVehiculo.ValorEstadia + "¿Desea abonar por adelantado?"))
+                Espacio espacioAEditar = ListaEspacios.FirstOrDefault(x => x.IdEspacio == int.Parse(dataGridView1.SelectedRows[0].Cells["IdEspacio"].Value.ToString()));
+
+                if (espacioAEditar is CocheraFija)
                 {
-                    vehiculo.Abono = "Si";
-                }else
-                {
-                    vehiculo.Abono = "No";
+                    if (Preguntar("El valor que debe abonar es: " + vehiculo.TipoVehiculo.ValorEstadia + "¿Desea abonar por adelantado?"))
+                    {
+                        vehiculo.Abono = "Si";
+                    }
+                    else
+                    {
+                        vehiculo.Abono = "No";
+                    }
+                    espacioAEditar.Vehiculo = vehiculo;
+                    (espacioAEditar as CocheraFija).ValorMes = vehiculo.TipoVehiculo.ValorEstadia;
+                    fijaBL.Guardar(espacioAEditar as CocheraFija);
+
+
                 }
-                (espacioAEditar as CocheraFija).ValorMes = vehiculo.TipoVehiculo.ValorEstadia;
-                fijaBL.Guardar(espacioAEditar as CocheraFija);
-
-
+                if (espacioAEditar is CocheraMovil)
+                {
+                    MessageBox.Show("El valor por hora es: " + vehiculo.TipoVehiculo.ValorHora + "Si se pasa de las 5 horas, cobrara estadia");
+                    (espacioAEditar as CocheraMovil).HoraEntrada = DateTime.Now.TimeOfDay;
+                    movilBL.Guardar(espacioAEditar as CocheraMovil);
+                }
+                espacioAEditar.Vehiculo = vehiculo;
+                espacioBL.Guardar(espacioAEditar);
+                this.Close();
             }
-            if (espacioAEditar is CocheraMovil)
+            else
             {
-                MessageBox.Show("El valor por hora es: " + vehiculo.TipoVehiculo.ValorHora + "Si se pasa de las 5 horas, cobrara estadia");
-                (espacioAEditar as CocheraMovil).HoraEntrada = DateTime.Now.TimeOfDay;
-                movilBL.Guardar(espacioAEditar as CocheraMovil);
+                MessageBox.Show("No es posible egresar el vehiculo debido a que el estacionamiento ha cerrado");
             }
-            espacioAEditar.Vehiculo = vehiculo;
-            espacioBL.Guardar(espacioAEditar);
-            this.Close();
         }
 
         private void button1_Click(object sender, EventArgs e)

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -30,7 +31,15 @@ namespace DAL
             }
             else
             {
-                string query = "UPDATE Espacio SET Piso = " + espacio.Piso + ", Porcentaje_Valor = " + espacio.PorcentajeValor + ", Tamano ='" + espacio.Tamano + "', id_vehiculo = " + 1+ " WHERE Id_Espacio = " + espacio.IdEspacio;
+                string query;
+                if (espacio.Vehiculo != null && espacio.Vehiculo.IdVehiculo!=0)
+                {
+                    query = "UPDATE Espacio SET Piso = " + espacio.Piso + ", Porcentaje_Valor = " + espacio.PorcentajeValor + ", Tamano ='" + espacio.Tamano + "', id_vehiculo = " + espacio.Vehiculo.IdVehiculo + " WHERE Id_Espacio = " + espacio.IdEspacio;
+                }
+                else
+                {
+                    query = "UPDATE Espacio SET Piso = " + espacio.Piso + ", Porcentaje_Valor = " + espacio.PorcentajeValor + ", Tamano ='" + espacio.Tamano + "', id_vehiculo = NULL WHERE Id_Espacio = " + espacio.IdEspacio;
+                }
                 DAO dao = new DAO();
                 return dao.ExecuteNonQuery(query);
             }

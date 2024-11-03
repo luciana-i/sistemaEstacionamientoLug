@@ -17,6 +17,8 @@ namespace SistemaEstacionamiento
         public Playa playaEditada { get; set; }
         CocheraFijaBL fijaBL = new CocheraFijaBL();
         CocheraMovilBL movilBL = new CocheraMovilBL();
+        EspacioBL espacioBL = new CocheraMovilBL();
+        VehiculoBL vehiculoBL = new VehiculoBL();
         List<CocheraDto> cocheraDtos = new List<CocheraDto>();
 
         public CocheraVehiculoForm()
@@ -58,6 +60,17 @@ namespace SistemaEstacionamiento
             cocherasDGV.MultiSelect = false;
             cocherasDGV.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             InicializarBusquedaCocheras();
+
+            if ((DateTime.Now.TimeOfDay - playaEditada.HoraCierre).TotalHours >= 0)
+            {
+                button1.Enabled = false;
+                button3.Enabled = false;
+                label5.Show();
+            }
+            else
+            {
+                label5.Hide();
+            }
 
         }
 
@@ -117,7 +130,33 @@ namespace SistemaEstacionamiento
         //Egreso vehiculo
         private void button3_Click(object sender, EventArgs e)
         {
+            if (cocherasDGV.SelectedRows[0].Cells["IdEspacio"].Value.ToString() != "")
+            {
+                if ((DateTime.Now.TimeOfDay - playaEditada.HoraCierre).TotalHours <=0)
+                {
+                    CocheraMovil cocheraMovil = movilBL.ListarPorPlaya(playaEditada.IdPlaya).FirstOrDefault(x => x.IdEspacio.ToString() == cocherasDGV.SelectedRows[0].Cells["IdEspacio"].Value.ToString());
+                    if (cocheraMovil != null)
+                    {
+                        cocheraMovil.HoraSalida = DateTime.Now.TimeOfDay;
 
+                        if((cocheraMovil.HoraSalida - cocheraMovil.HoraEntrada).TotalHours >= 5)
+                        {
+                            MessageBox.Show("Ha sobrepasado las 5 horas, deberá abonar estadía");
+                        }
+                    }
+                    Espacio espacio = espacioBL.Obtener(int.Parse(cocherasDGV.SelectedRows[0].Cells["IdEspacio"].Value.ToString()));
+                    espacioBL.Guardar(espacio);
+                    MessageBox.Show("El vehiculo egreso del estacionamiento");
+                }
+                else
+                {
+                    MessageBox.Show("No es posible egresar el vehiculo debido a que el estacionamiento ha cerrado");
+                }
+            }
+            else
+            {
+                MessageBox.Show("No seleccionaste ningun estacionamiento");
+            }
         }
     }
 }
