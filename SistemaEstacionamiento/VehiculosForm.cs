@@ -225,7 +225,7 @@ namespace SistemaEstacionamiento
 
                 if (espacioAEditar is CocheraFija)
                 {
-                    if (Preguntar("El valor que debe abonar es: " + vehiculo.TipoVehiculo.ValorEstadia + "¿Desea abonar por adelantado?"))
+                    if (Preguntar("El valor que debe abonar es: " + vehiculo.TipoVehiculo.ValorEstadia * espacioAEditar.PorcentajeValor + "¿Desea abonar por adelantado?"))
                     {
                         vehiculo.Abono = "Si";
                     }
@@ -234,14 +234,14 @@ namespace SistemaEstacionamiento
                         vehiculo.Abono = "No";
                     }
                     espacioAEditar.Vehiculo = vehiculo;
-                    (espacioAEditar as CocheraFija).ValorMes = vehiculo.TipoVehiculo.ValorEstadia;
+                    (espacioAEditar as CocheraFija).ValorMes = vehiculo.TipoVehiculo.ValorEstadia * espacioAEditar.PorcentajeValor;
                     fijaBL.Guardar(espacioAEditar as CocheraFija);
 
 
                 }
                 if (espacioAEditar is CocheraMovil)
                 {
-                    MessageBox.Show("El valor por hora es: " + vehiculo.TipoVehiculo.ValorHora + "Si se pasa de las 5 horas, cobrara estadia");
+                    MessageBox.Show("El valor por hora es: " + vehiculo.TipoVehiculo.ValorHora * espacioAEditar.PorcentajeValor + "Si se pasa de las 5 horas, cobrara estadia");
                     (espacioAEditar as CocheraMovil).HoraEntrada = DateTime.Now.TimeOfDay;
                     movilBL.Guardar(espacioAEditar as CocheraMovil);
                 }

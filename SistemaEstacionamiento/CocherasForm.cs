@@ -12,6 +12,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.Reflection;
+using System.Text.RegularExpressions;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace SistemaEstacionamiento
 {
@@ -23,6 +25,7 @@ namespace SistemaEstacionamiento
         //int idEspacio = 0;
         //int idCocheraEditada = 0;
         public CocheraDto cocheraDtoEditada;
+        EspacioBL espacioBL = new EspacioBL();
         public List<CocheraDto> cocherasEditadasDto { get; set; }
         //public Playa playaEditada { get; set; }
        
@@ -57,7 +60,10 @@ namespace SistemaEstacionamiento
                 comboBox1.Text = cocheraDtoEditada.Tamano.ToString();
                 comboBox2.Text = (cocheraDtoEditada.TipoCocheraEnum == Constantes.TipoCochera.Fija )?  "Fija":"Movil";
                 comboBox2.Enabled = false;
+                
             }
+            textBox3.ReadOnly = true;
+
         }
         /// <summary>
         /// editar y guardar cochera
@@ -204,6 +210,33 @@ namespace SistemaEstacionamiento
         private void button1_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsDigit(e.KeyChar))
+            {
+                MessageBox.Show("Presionaste un número: " + e.KeyChar);
+            }
+            // Verifica si la tecla presionada es la tecla de retroceso
+            else if (e.KeyChar == (char)Keys.Back)
+            {
+                MessageBox.Show("Presionaste la tecla de retroceso.");
+            }
+            else
+            {
+                // Cancela el evento si no es un número o la tecla de retroceso
+                e.Handled = true;
+            }
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            if (int.TryParse(textBox1.Text, out int valor))
+            {
+                textBox3.Text = espacioBL.PorcentajeValorChanged(valor).ToString();
+            }
+           
         }
     }
 }

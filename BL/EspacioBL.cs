@@ -40,5 +40,11 @@ namespace BL
 
             return EspacioDAL.Eliminar(espacio);
         }
+
+        public int PorcentajeValorChanged(int value)
+        {
+            int porcentajeInicial = 10;
+            return value*porcentajeInicial;
+        }
     }
 }
