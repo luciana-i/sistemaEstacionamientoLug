@@ -10,6 +10,7 @@ namespace BL
 {
     public class CocheraDto
     {
+        #region Atributos
         public int IdEspacio { get; set; }
         public int Piso { get; set; }
         public int PorcentajeValor { get; set; }
@@ -21,12 +22,15 @@ namespace BL
         public Constantes.EstadosColeccion EstadoColeccion { get; set; }
         public int IndiceColeccion { get; set; }
         public Constantes.TipoCochera TipoCocheraEnum { get; set; }
+        public TimeSpan HoraEntrada { get; set; }
 
-        public string TipoCochera 
-        { 
-            get 
-            { 
-                if(Constantes.TipoCochera.Fija==TipoCocheraEnum)
+        public string Abono { get; set; }
+
+        public string TipoCochera
+        {
+            get
+            {
+                if (Constantes.TipoCochera.Fija == TipoCocheraEnum)
                 {
                     return "Cochera Fija";
                 }
@@ -35,9 +39,13 @@ namespace BL
                     return "Cochera Movil";
                 }
                 return "";
-            } 
+            }
         }
+        #endregion
 
+
+
+        #region Metodos
         public Espacio TransformarCocheraDtoEnEspacio(CocheraDto cocheraDto)
         {
             Espacio cochera;
@@ -55,8 +63,8 @@ namespace BL
             cochera.Piso = cocheraDto.Piso;
             cochera.Tamano = cocheraDto.Tamano;
             cochera.PorcentajeValor = cocheraDto.PorcentajeValor;
-            cochera.IdEspacio= cocheraDto.IdEspacio;
-            cochera.IdPlaya= cocheraDto.IdPlaya;
+            cochera.IdEspacio = cocheraDto.IdEspacio;
+            cochera.IdPlaya = cocheraDto.IdPlaya;
             cochera.IndiceColeccion = cocheraDto.IndiceColeccion;
             cochera.EstadoColeccion = cocheraDto.EstadoColeccion;
 
@@ -64,5 +72,15 @@ namespace BL
 
         }
 
+        public string CocheraOcupada()
+        {
+            return Vehiculo != null ? "Ocupada" : "Libre";
+        }
+
+        public string obtenerPatente()
+        {
+            return Vehiculo != null ? Vehiculo.Patente : "";
+        } 
+        #endregion
     }
 }

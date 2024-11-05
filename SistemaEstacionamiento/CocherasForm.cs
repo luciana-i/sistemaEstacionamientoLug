@@ -37,6 +37,10 @@ namespace SistemaEstacionamiento
 
         private void CocherasForm_Load(object sender, EventArgs e)
         {
+            this.BackColor = System.Drawing.ColorTranslator.FromHtml("#206d7f");
+            this.StartPosition = FormStartPosition.CenterScreen;
+            this.WindowState = FormWindowState.Normal;
+
             if (cocheraDtoEditada !=null)
             {
                 //Espacio cocheraEditada = cocheraFijaBL.Listar().FirstOrDefault(x=> x.IdEspacio == idEspacio);

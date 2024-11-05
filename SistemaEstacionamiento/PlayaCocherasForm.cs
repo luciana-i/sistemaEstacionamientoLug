@@ -32,8 +32,10 @@ namespace SistemaEstacionamiento
 
         private void PlayaCocherasForm_Load(object sender, EventArgs e)
         {
-           
-
+            this.BackColor = System.Drawing.ColorTranslator.FromHtml("#206d7f");
+            this.StartPosition = FormStartPosition.CenterScreen;
+            this.WindowState = FormWindowState.Normal;
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.Columns.Add("IdEspacio", "IdEspacio");
             dataGridView1.Columns["IdEspacio"].Visible = false;
             dataGridView1.Columns.Add("Piso", "Piso");
@@ -53,6 +55,7 @@ namespace SistemaEstacionamiento
             dataGridView1.RowHeadersVisible = false;
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
+        
             dataGridView1.EditMode = DataGridViewEditMode.EditProgrammatically;
             dataGridView1.MultiSelect = false;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;

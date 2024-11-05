@@ -107,7 +107,7 @@ namespace DAL
             if (dr["id_vehiculo"] != DBNull.Value && dr["id_vehiculo"].ToString() != "{}")
             {
                 int idVehiculo = Convert.ToInt32(dr["id_vehiculo"]);
-                espacio.Vehiculo = v;
+                espacio.Vehiculo = VehiculoDAL.Obtener(idVehiculo);
             }
             else
             {

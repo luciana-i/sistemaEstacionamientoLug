@@ -46,5 +46,22 @@ namespace BL
             int porcentajeInicial = 10;
             return value*porcentajeInicial;
         }
+
+        public string DefinirTamanoDeEspacioParaTipoAuto(String tipoAuto)
+        {
+            switch (tipoAuto)
+            {
+                case "moto":
+                    return "Chico";
+
+                case "auto":
+                    return "Mediano";
+
+                case "camioneta":
+                    return "Grande";
+                default:
+                    return "";
+            }
+        }
     }
 }

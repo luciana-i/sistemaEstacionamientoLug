@@ -33,15 +33,14 @@ namespace SistemaEstacionamiento
 
         private void VehiculosForm_Load(object sender, EventArgs e)
         {
-
-            
-            comboBox4.DataSource = vehiculoBL.ListarVehiculosSinEstacionar();
-
+            this.BackColor = System.Drawing.ColorTranslator.FromHtml("#206d7f");
+            this.StartPosition = FormStartPosition.CenterScreen;
+            this.WindowState = FormWindowState.Normal;
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            ActualizarComboAutos();
             dataGridView1.Hide();
             llenarCombo();
-            //comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
-
-            //Actualizar();
+            columnasDGV();
         }
 
         private void llenarCombo()
@@ -50,15 +49,6 @@ namespace SistemaEstacionamiento
             comboBox1.Items.AddRange(tipoVehiculoBL.Listar().ToArray());
         }
 
-        //private void Actualizar(Espacio espacios)
-        //{
-        //    dataGridView1.Rows.Clear();
-        //    foreach (Espacio espacio in espacios)
-        //    {
-        //        dataGridView1.Rows.Add(vehiculo.IdVehiculo, vehiculo.Patente, vehiculo.Abono, vehiculo.TipoVehiculo);
-
-        //    }
-        //}
 
         /***
          * guardar - actualizar
@@ -84,6 +74,7 @@ namespace SistemaEstacionamiento
                     editando = false;
 
                 }
+                ActualizarComboAutos();
                 MessageBox.Show("Agregaste con exito el vehiculo con patente: " + vehiculo.Patente + " ahora elegi la cochera " + comboBox3.SelectedText);
                 if(comboBox3.SelectedItem == "Fija")
                 {
@@ -104,21 +95,28 @@ namespace SistemaEstacionamiento
            
         }
 
+        private void ActualizarComboAutos()
+        {
+            comboBox4.DataSource = null;
+            comboBox4.Items.Clear();
+            comboBox4.DataSource = vehiculoBL.ListarVehiculosSinEstacionar();
+        }
+
         private void ActualizarCocheras()
         {
-            columnasDGV();
+            
             if (espacio is CocheraFija)
             {
                 List<CocheraFija> lista = fijaBL.ListarPorPlaya(playaEditada.IdPlaya);
 
                 dataGridView1.Rows.Clear();
                 ListaEspacios.AddRange(lista);
-                
-                foreach (CocheraFija cochera in lista.Where(x => x.Vehiculo == null).Cast<Espacio>().ToList())
+                dataGridView1.Columns.Add("IdCocheraFija", "IdCocheraFija");
+                dataGridView1.Columns["IdCocheraFija"].Visible = false;
+
+                foreach (CocheraFija cochera in lista.Where(x =>( x.Vehiculo == null && x.Tamano == espacioBL.DefinirTamanoDeEspacioParaTipoAuto(vehiculo.TipoVehiculo.Nombre))).Cast<Espacio>().ToList())
                 {
-                    dataGridView1.Columns.Add("IdCocheraFija", "IdCocheraFija");
-                    dataGridView1.Columns["IdCocheraFija"].Visible = false;
-                    dataGridView1.Rows.Add(cochera.IdEspacio, cochera.Piso, cochera.Piso, cochera.Tamano, cochera.PorcentajeValor, cochera.IdCocheraFija);
+                    dataGridView1.Rows.Add(cochera.IdEspacio, cochera.Piso, cochera.Tamano, "Fija", cochera.IdCocheraFija);
                 }
                
             }
@@ -128,11 +126,11 @@ namespace SistemaEstacionamiento
 
                 dataGridView1.Rows.Clear();
                 ListaEspacios.AddRange(lista);
-                foreach (CocheraMovil cochera in lista.Where(x => x.Vehiculo == null).Cast<Espacio>().ToList())
+                dataGridView1.Columns.Add("IdCocheraMovil", "IdCocheraMovil");
+                dataGridView1.Columns["IdCocheraMovil"].Visible = false;
+                foreach (CocheraMovil cochera in lista.Where(x => (x.Vehiculo == null && x.Tamano == espacioBL.DefinirTamanoDeEspacioParaTipoAuto(vehiculo.TipoVehiculo.Nombre))).Cast<Espacio>().ToList())
                 {
-                    dataGridView1.Columns.Add("IdCocheraMovil", "IdCocheraMovil");
-                    dataGridView1.Columns["IdCocheraMovil"].Visible = false;
-                    dataGridView1.Rows.Add(cochera.IdEspacio, cochera.Piso, cochera.Piso, cochera.Tamano, cochera.PorcentajeValor, cochera.IdCocheraMovil);
+                   dataGridView1.Rows.Add(cochera.IdEspacio, cochera.Piso, cochera.Tamano, "Movil", cochera.IdCocheraMovil);
                 }
             }
 
@@ -147,32 +145,13 @@ namespace SistemaEstacionamiento
             dataGridView1.Columns.Add("Piso", "Piso");
             dataGridView1.Columns["Piso"].Width = 150;
             dataGridView1.Columns.Add("Tamano", "Tamaño");
-            dataGridView1.Columns.Add("PorcentajeValor", "PorcentajeValor"); 
-            dataGridView1.Columns.Add("IdCocheraMovil", "IdCocheraMovil");
-            dataGridView1.Columns["IdCocheraMovil"].Visible = false;
-            dataGridView1.Columns.Add("IdCocheraFija", "IdCocheraFija");
-            dataGridView1.Columns["IdCocheraFija"].Visible = false;
+            dataGridView1.Columns.Add("TipoCochera", "Tipo Cochera"); 
             dataGridView1.RowHeadersVisible = false;
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.EditMode = DataGridViewEditMode.EditProgrammatically;
             dataGridView1.MultiSelect = false;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            //switch (vehiculo.TipoVehiculo.Nombre)
-            //{
-            //    case "Moto":
-            //        Código para el caso "Moto"
-            //        break;
-
-            //        Puedes agregar otros casos aquí
-            //    case "Auto":
-            //        Código para el caso "Auto"
-            //        break;
-
-            //    default:
-            //        Código para el caso por defecto
-            //        break;
-            //}
         }
 
         private void VaciarTextbox()
@@ -219,13 +198,13 @@ namespace SistemaEstacionamiento
         //Ingreso vehiculo Seleccionar cochera TODO: CALCULO PLATA
         private void button3_Click(object sender, EventArgs e)
         {
-            if (playaEditada.HoraCierre < DateTime.Now.TimeOfDay)
+            if (playaEditada.HoraCierre > DateTime.Now.TimeOfDay)
             {
                 Espacio espacioAEditar = ListaEspacios.FirstOrDefault(x => x.IdEspacio == int.Parse(dataGridView1.SelectedRows[0].Cells["IdEspacio"].Value.ToString()));
 
                 if (espacioAEditar is CocheraFija)
                 {
-                    if (Preguntar("El valor que debe abonar es: " + vehiculo.TipoVehiculo.ValorEstadia * espacioAEditar.PorcentajeValor + "¿Desea abonar por adelantado?"))
+                    if (Preguntar("El valor que debe abonar es: " + (vehiculo.TipoVehiculo.ValorEstadia - ((vehiculo.TipoVehiculo.ValorEstadia * espacioAEditar.PorcentajeValor) / 100)) + "¿Desea abonar por adelantado?"))
                     {
                         vehiculo.Abono = "Si";
                     }
@@ -234,14 +213,14 @@ namespace SistemaEstacionamiento
                         vehiculo.Abono = "No";
                     }
                     espacioAEditar.Vehiculo = vehiculo;
-                    (espacioAEditar as CocheraFija).ValorMes = vehiculo.TipoVehiculo.ValorEstadia * espacioAEditar.PorcentajeValor;
+                    (espacioAEditar as CocheraFija).ValorMes = (vehiculo.TipoVehiculo.ValorEstadia - ((vehiculo.TipoVehiculo.ValorEstadia * espacioAEditar.PorcentajeValor) / 100));
                     fijaBL.Guardar(espacioAEditar as CocheraFija);
 
 
                 }
                 if (espacioAEditar is CocheraMovil)
                 {
-                    MessageBox.Show("El valor por hora es: " + vehiculo.TipoVehiculo.ValorHora * espacioAEditar.PorcentajeValor + "Si se pasa de las 5 horas, cobrara estadia");
+                    MessageBox.Show("El valor por hora es: " + (vehiculo.TipoVehiculo.ValorHora - ((vehiculo.TipoVehiculo.ValorHora * espacioAEditar.PorcentajeValor) / 100)) + "Si se pasa de las 5 horas, cobrara estadia");
                     (espacioAEditar as CocheraMovil).HoraEntrada = DateTime.Now.TimeOfDay;
                     movilBL.Guardar(espacioAEditar as CocheraMovil);
                 }

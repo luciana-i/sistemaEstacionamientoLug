@@ -25,6 +25,10 @@ namespace SistemaEstacionamiento
 
         private void PlayasForm_Load(object sender, EventArgs e)
         {
+            this.BackColor = System.Drawing.ColorTranslator.FromHtml("#206d7f");
+            this.StartPosition = FormStartPosition.CenterScreen;
+            this.WindowState = FormWindowState.Normal;
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.Columns.Add("IdPlaya", "IdPlaya");
             dataGridView1.Columns["IdPlaya"].Visible = false;
             dataGridView1.Columns.Add("Nombre", "Nombre");
@@ -47,8 +51,10 @@ namespace SistemaEstacionamiento
                 button1.Hide();
                 button4.Hide();
                 button3.Hide();
+            }else
+            {
+                button2.Hide();
             }
-
 
             Actualizar();
         }
@@ -115,8 +121,11 @@ namespace SistemaEstacionamiento
             }
 
         }
-
-    
+        /// <summary>
+        /// Nueva playa
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>  
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -125,7 +134,7 @@ namespace SistemaEstacionamiento
             pcForm.MaximizeBox = false;
             Playa playa = new Playa();
             pcForm.playaEditada = playa;
-            pcForm.Show();
+            pcForm.ShowDialog();
             Actualizar();
         }
 
@@ -138,7 +147,7 @@ namespace SistemaEstacionamiento
                 cvForm.MaximizeBox = false;
                 Playa playa = playaBL.Obtener(int.Parse(dataGridView1.SelectedRows[0].Cells["IdPlaya"].Value.ToString()));
                 cvForm.playaEditada = playa;
-                cvForm.Show();
+                cvForm.ShowDialog();
                 Actualizar();
             }else
             {

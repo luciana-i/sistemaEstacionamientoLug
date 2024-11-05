@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static BE.Constantes;
 
 namespace SistemaEstacionamiento
 {
@@ -28,6 +29,11 @@ namespace SistemaEstacionamiento
 
         private void CocheraVehiculo_Load(object sender, EventArgs e)
         {
+            this.BackColor = System.Drawing.ColorTranslator.FromHtml("#206d7f");
+            this.StartPosition = FormStartPosition.CenterScreen;
+            this.WindowState = FormWindowState.Normal;
+            
+
             textBox1.Text = playaEditada.Nombre;
             textBox2.Text = playaEditada.HoraApertura.ToString(@"hh\:mm");
             textBox3.Text = playaEditada.HoraCierre.ToString(@"hh\:mm");
@@ -39,20 +45,22 @@ namespace SistemaEstacionamiento
 
             cocherasDGV.Columns.Add("IdEspacio", "IdEspacio");
             cocherasDGV.Columns["IdEspacio"].Visible = false;
+            cocherasDGV.Columns.Add("Ocupada", "Ocupada");
             cocherasDGV.Columns.Add("Piso", "Piso");
             cocherasDGV.Columns["Piso"].Width = 100;
             cocherasDGV.Columns.Add("Tamano", "Tamaño");
             cocherasDGV.Columns["Tamano"].Width = 150;
-            cocherasDGV.Columns.Add("PorcentajeValor", "Porcentaje Valor");
-            cocherasDGV.Columns["PorcentajeValor"].Width = cocherasDGV.Width - 580;
-            cocherasDGV.Columns.Add("IdCocheraMovil", "IdCocheraMovil");
-            cocherasDGV.Columns["IdCocheraMovil"].Visible = false;
-            cocherasDGV.Columns.Add("IdCocheraFija", "IdCocheraFija");
-            cocherasDGV.Columns["IdCocheraFija"].Visible = false;
             cocherasDGV.Columns.Add("TipoCochera", "Tipo Cochera");
             cocherasDGV.Columns["TipoCochera"].Width = 100;
-            cocherasDGV.Columns.Add("IndiceColeccion", "IndiceColeccion");
-            cocherasDGV.Columns["IndiceColeccion"].Visible = false;
+            cocherasDGV.Columns.Add("Patente", "Patente");
+            cocherasDGV.Columns.Add("IdCocheraMovil", "IdCocheraMovil");
+            cocherasDGV.Columns["IdCocheraMovil"].Visible = false;
+            cocherasDGV.Columns.Add("HoraEntrada", "Hora Entrada");
+            cocherasDGV.Columns.Add("IdCocheraFija", "IdCocheraFija");
+            cocherasDGV.Columns["IdCocheraFija"].Visible = false;
+            cocherasDGV.Columns.Add("Abono", "Abono por Adelantado");
+            //cocherasDGV.Columns.Add("IndiceColeccion", "IndiceColeccion");
+            //cocherasDGV.Columns["IndiceColeccion"].Visible = false;
             cocherasDGV.RowHeadersVisible = false;
             cocherasDGV.AllowUserToAddRows = false;
             cocherasDGV.AllowUserToDeleteRows = false;
@@ -72,11 +80,19 @@ namespace SistemaEstacionamiento
                 label5.Hide();
             }
 
+            
+
         }
 
-
+        /// <summary>
+        /// 
+        /// El listado de espacios de una cochera permitirá visualizar si está ocupada o no, hora de entrada
+        /// si se tratase de una cochera móvil, patente del vehículo estacionado si lo hubiese, y una
+        /// indicación si el vehículo estacionado abonó el precio por anticipado
+        /// </summary>
         public void InicializarBusquedaCocheras()
         {
+            cocherasDGV.Rows.Clear();
             cocheraDtos.Clear();
             foreach (var item in movilBL.ListarPorPlaya(playaEditada.IdPlaya))
             {
@@ -88,6 +104,8 @@ namespace SistemaEstacionamiento
                 cocheraDto.IdCocheraMovil = item.IdCocheraMovil;
                 cocheraDto.EstadoColeccion = Constantes.EstadosColeccion.SinCambio;
                 cocheraDto.TipoCocheraEnum = Constantes.TipoCochera.Movil;
+                cocheraDto.Vehiculo = item.Vehiculo;
+                cocheraDto.HoraEntrada = item.HoraEntrada;
                 cocheraDtos.Add(cocheraDto);
                 int index = cocheraDtos.IndexOf(cocheraDto);
                 cocheraDtos[index].IndiceColeccion = index;
@@ -102,6 +120,8 @@ namespace SistemaEstacionamiento
                 cocheraDto.IdCocheraFija = item.IdCocheraFija;
                 cocheraDto.EstadoColeccion = Constantes.EstadosColeccion.SinCambio;
                 cocheraDto.TipoCocheraEnum = Constantes.TipoCochera.Fija;
+                cocheraDto.Vehiculo = item.Vehiculo;
+                cocheraDto.Abono = (item.Vehiculo!=null ) ? item.Vehiculo.Abono : "";
                 cocheraDtos.Add(cocheraDto);
                 int index = cocheraDtos.IndexOf(cocheraDto);
                 cocheraDtos[index].IndiceColeccion = index;
@@ -109,7 +129,7 @@ namespace SistemaEstacionamiento
 
             foreach (CocheraDto cochera in cocheraDtos)
             {
-                cocherasDGV.Rows.Add(cochera.IdEspacio, cochera.Piso, cochera.Tamano, cochera.PorcentajeValor, cochera.IdCocheraMovil, cochera.IdCocheraFija, cochera.TipoCochera, cochera.IndiceColeccion);
+                cocherasDGV.Rows.Add(cochera.IdEspacio, cochera.CocheraOcupada(), cochera.Piso, cochera.Tamano,/*cochera.PorcentajeValor ,*/ cochera.TipoCochera, cochera.obtenerPatente(), cochera.IdCocheraMovil, cochera.HoraEntrada, cochera.IdCocheraFija, cochera.Abono/* cochera.TipoCochera, cochera.IndiceColeccion*/);
             }
         }
 
@@ -119,7 +139,8 @@ namespace SistemaEstacionamiento
             vehiculosForm.MinimizeBox = false;
             vehiculosForm.MaximizeBox = false;
             vehiculosForm.playaEditada = playaEditada;
-            vehiculosForm.Show();
+            vehiculosForm.ShowDialog();
+            InicializarBusquedaCocheras();
 
         }
 
@@ -145,8 +166,10 @@ namespace SistemaEstacionamiento
                         }
                     }
                     Espacio espacio = espacioBL.Obtener(int.Parse(cocherasDGV.SelectedRows[0].Cells["IdEspacio"].Value.ToString()));
+                    espacio.Vehiculo = null;
                     espacioBL.Guardar(espacio);
                     MessageBox.Show("El vehiculo egreso del estacionamiento");
+                    InicializarBusquedaCocheras();
                 }
                 else
                 {
