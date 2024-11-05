@@ -32,9 +32,15 @@ namespace BL
 
         public int Eliminar(int id)
         {
+            
             return VehiculoDAL.Eliminar(id);
         }
 
+        public bool ExisteUnVehiculoEnUso(int id)
+        {
+            EspacioBL espacioBL = new EspacioBL();
+            return espacioBL.Listar().FirstOrDefault(x => x.Vehiculo != null && x.Vehiculo.IdVehiculo == id) != null;
+        }
         
         
     }

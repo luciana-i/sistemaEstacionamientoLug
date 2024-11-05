@@ -34,11 +34,11 @@ namespace SistemaEstacionamiento
             dataGridView1.Columns.Add("IdVehiculo", "IdVehiculo");
             dataGridView1.Columns["IdVehiculo"].Visible = false;
             dataGridView1.Columns.Add("Patente", "Patente");
-            dataGridView1.Columns["Patente"].Width = 150;
+            dataGridView1.Columns["Patente"].Width = 500;
             dataGridView1.Columns.Add("Abono", "Abono");
             dataGridView1.Columns["Abono"].Width = 150;
             dataGridView1.Columns.Add("IdTipoVehiculo", "Tipo Vehiculo");
-            dataGridView1.Columns["IdTipoVehiculo"].Width = dataGridView1.Width - 450;
+            dataGridView1.Columns["IdTipoVehiculo"].Width = dataGridView1.Width - 300;
             dataGridView1.RowHeadersVisible = false;
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
@@ -123,20 +123,32 @@ namespace SistemaEstacionamiento
             }
         }
 
+        /// <summary>
+        /// Eliminar vehiculo
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button4_Click_1(object sender, EventArgs e)
         {
             int id = int.Parse(dataGridView1.SelectedRows[0].Cells["IdVehiculo"].Value.ToString());
             if (id > 0)
             {
-                if (Preguntar())
+                if (!vehiculoBL.ExisteUnVehiculoEnUso(id))
                 {
-                    vehiculoBL.Eliminar(id);
-                    Actualizar();
+                    if (Preguntar())
+                    {
+                        vehiculoBL.Eliminar(id);
+                        Actualizar();
+                    }
+                }else
+                {
+                    MessageBox.Show("Ese vehiculo no se puede eliminar porque esta estacionado en otro garage");
                 }
+                
             }
             else
             {
-                MessageBox.Show("No seleccionaste ninguna playa para eliminar");
+                MessageBox.Show("No seleccionaste ningun vehiculo para eliminar");
             }
         }
 

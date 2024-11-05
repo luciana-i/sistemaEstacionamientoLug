@@ -1,12 +1,103 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\Administrator\\Documents\\Luciana\\Facultad\\Lug\\SistemaEstacionamiento\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{B51AA06F-5822-4A02-BA8C-D8D79340E86F}|BL\\BL.csproj|c:\\users\\administrator\\documents\\luciana\\facultad\\lug\\sistemaestacionamiento\\bl\\vehiculobl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B51AA06F-5822-4A02-BA8C-D8D79340E86F}|BL\\BL.csproj|solutionrelative:bl\\vehiculobl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3FCEFCEF-0C33-4F2E-B60F-62D5F72E1845}|SistemaEstacionamiento\\SistemaEstacionamiento.csproj|c:\\users\\administrator\\documents\\luciana\\facultad\\lug\\sistemaestacionamiento\\sistemaestacionamiento\\vehiculosform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3FCEFCEF-0C33-4F2E-B60F-62D5F72E1845}|SistemaEstacionamiento\\SistemaEstacionamiento.csproj|solutionrelative:sistemaestacionamiento\\vehiculosform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3FCEFCEF-0C33-4F2E-B60F-62D5F72E1845}|SistemaEstacionamiento\\SistemaEstacionamiento.csproj|c:\\users\\administrator\\documents\\luciana\\facultad\\lug\\sistemaestacionamiento\\sistemaestacionamiento\\vehiculosform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{3FCEFCEF-0C33-4F2E-B60F-62D5F72E1845}|SistemaEstacionamiento\\SistemaEstacionamiento.csproj|solutionrelative:sistemaestacionamiento\\vehiculosform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3FCEFCEF-0C33-4F2E-B60F-62D5F72E1845}|SistemaEstacionamiento\\SistemaEstacionamiento.csproj|c:\\users\\administrator\\documents\\luciana\\facultad\\lug\\sistemaestacionamiento\\sistemaestacionamiento\\abmvehiculoform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3FCEFCEF-0C33-4F2E-B60F-62D5F72E1845}|SistemaEstacionamiento\\SistemaEstacionamiento.csproj|solutionrelative:sistemaestacionamiento\\abmvehiculoform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3FCEFCEF-0C33-4F2E-B60F-62D5F72E1845}|SistemaEstacionamiento\\SistemaEstacionamiento.csproj|c:\\users\\administrator\\documents\\luciana\\facultad\\lug\\sistemaestacionamiento\\sistemaestacionamiento\\abmvehiculoform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{3FCEFCEF-0C33-4F2E-B60F-62D5F72E1845}|SistemaEstacionamiento\\SistemaEstacionamiento.csproj|solutionrelative:sistemaestacionamiento\\abmvehiculoform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "VehiculosForm.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\Luciana\\Facultad\\Lug\\SistemaEstacionamiento\\SistemaEstacionamiento\\VehiculosForm.cs",
+              "RelativeDocumentMoniker": "SistemaEstacionamiento\\VehiculosForm.cs",
+              "ToolTip": "C:\\Users\\Administrator\\Documents\\Luciana\\Facultad\\Lug\\SistemaEstacionamiento\\SistemaEstacionamiento\\VehiculosForm.cs",
+              "RelativeToolTip": "SistemaEstacionamiento\\VehiculosForm.cs",
+              "ViewState": "AgIAACEAAAAAAAAAAAAqwDcAAABKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-05T10:52:50.426Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "VehiculoBL.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\Luciana\\Facultad\\Lug\\SistemaEstacionamiento\\BL\\VehiculoBL.cs",
+              "RelativeDocumentMoniker": "BL\\VehiculoBL.cs",
+              "ToolTip": "C:\\Users\\Administrator\\Documents\\Luciana\\Facultad\\Lug\\SistemaEstacionamiento\\BL\\VehiculoBL.cs",
+              "RelativeToolTip": "BL\\VehiculoBL.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAiwBgAAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-05T10:43:00.098Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ABMVehiculoForm.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\Luciana\\Facultad\\Lug\\SistemaEstacionamiento\\SistemaEstacionamiento\\ABMVehiculoForm.cs",
+              "RelativeDocumentMoniker": "SistemaEstacionamiento\\ABMVehiculoForm.cs",
+              "ToolTip": "C:\\Users\\Administrator\\Documents\\Luciana\\Facultad\\Lug\\SistemaEstacionamiento\\SistemaEstacionamiento\\ABMVehiculoForm.cs",
+              "RelativeToolTip": "SistemaEstacionamiento\\ABMVehiculoForm.cs",
+              "ViewState": "AgIAAHQAAAAAAAAAAAAcwIoAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-05T10:40:11.021Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ABMVehiculoForm.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\Luciana\\Facultad\\Lug\\SistemaEstacionamiento\\SistemaEstacionamiento\\ABMVehiculoForm.cs",
+              "RelativeDocumentMoniker": "SistemaEstacionamiento\\ABMVehiculoForm.cs",
+              "ToolTip": "C:\\Users\\Administrator\\Documents\\Luciana\\Facultad\\Lug\\SistemaEstacionamiento\\SistemaEstacionamiento\\ABMVehiculoForm.cs [Design]",
+              "RelativeToolTip": "SistemaEstacionamiento\\ABMVehiculoForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-05T10:39:29.747Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "VehiculosForm.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\Luciana\\Facultad\\Lug\\SistemaEstacionamiento\\SistemaEstacionamiento\\VehiculosForm.cs",
+              "RelativeDocumentMoniker": "SistemaEstacionamiento\\VehiculosForm.cs",
+              "ToolTip": "C:\\Users\\Administrator\\Documents\\Luciana\\Facultad\\Lug\\SistemaEstacionamiento\\SistemaEstacionamiento\\VehiculosForm.cs [Design]",
+              "RelativeToolTip": "SistemaEstacionamiento\\VehiculosForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-05T10:39:22.505Z",
+              "EditorCaption": " [Design]"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
