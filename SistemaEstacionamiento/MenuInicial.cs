@@ -44,12 +44,12 @@ namespace SistemaEstacionamiento
             ////playasForm.MinimizeBox = false;
             ////playasForm.MaximizeBox = false;
             //playasForm.Show();
-            PlayasForm formHijo = new PlayasForm();
-            formHijo.MdiParent = this; // Establece el formulario padre
-            formHijo.WindowState = FormWindowState.Normal; // Asegura que no esté maximizado
-            formHijo.StartPosition = FormStartPosition.CenterScreen; // Opcional: Centrar el formulario en la pantalla
-            formHijo.Size = new Size(800, 600); // Establece el tamaño deseado (ancho x alto)
-            formHijo.Show(); // Muestra el formulario
+            PlayasForm playasForm = new PlayasForm();
+            playasForm.MdiParent = this; 
+            playasForm.WindowState = FormWindowState.Normal; 
+            playasForm.StartPosition = FormStartPosition.CenterScreen; 
+            playasForm.Size = new Size(800, 600); 
+            playasForm.Show(); 
 
         }
 
@@ -64,11 +64,30 @@ namespace SistemaEstacionamiento
 
             PlayasForm playasForm = new PlayasForm();
             playasForm.MdiParent = this;
-            playasForm.WindowState = FormWindowState.Maximized;
-            playasForm.MinimizeBox = false;
-            playasForm.MaximizeBox = false;
-            playasForm.sinEdicion=true;
+            playasForm.WindowState = FormWindowState.Normal;
+            playasForm.StartPosition = FormStartPosition.CenterScreen;
+            playasForm.Size = new Size(800, 600);
+            playasForm.sinEdicion = true;
             playasForm.Show();
+
+            //PlayasForm playasForm = new PlayasForm();
+            //playasForm.MdiParent = this;
+            //playasForm.WindowState = FormWindowState.Maximized;
+            //playasForm.MinimizeBox = false;
+            //playasForm.MaximizeBox = false;
+            //playasForm.Show();
+        }
+
+        private void vehiculosToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            ABMVehiculoForm vehiculosAbmForm = new ABMVehiculoForm();
+            vehiculosAbmForm.MdiParent = this;
+            vehiculosAbmForm.WindowState = FormWindowState.Normal;
+            vehiculosAbmForm.StartPosition = FormStartPosition.CenterScreen;
+            vehiculosAbmForm.Size = new Size(800, 600);
+            vehiculosAbmForm.Show();
+
+           
         }
     }
 }

@@ -41,6 +41,7 @@ namespace BL
 
         }
 
+        #region Metodos - Negocio
         public static string SuperoCincoHoras(CocheraMovil cocheraMovil)
         {
             if (cocheraMovil != null)
@@ -49,7 +50,7 @@ namespace BL
 
                 if ((cocheraMovil.HoraSalida - cocheraMovil.HoraEntrada).TotalHours >= 5)
                 {
-                   
+
                     return "Ha sobrepasado las 5 horas, deberá abonar estadía";
                 }
             }
@@ -66,6 +67,7 @@ namespace BL
         public float ObtenerPrecioPorHora(Espacio espacio)
         {
             return (espacio.Vehiculo.TipoVehiculo.ValorHora - ((espacio.Vehiculo.TipoVehiculo.ValorHora * espacio.PorcentajeValor) / 100));
-        }
+        } 
+        #endregion
     }
 }

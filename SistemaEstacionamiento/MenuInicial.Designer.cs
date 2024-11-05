@@ -29,14 +29,15 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MenuInicial));
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.estacionamientosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.estacionamientoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.vehiculosToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.playasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listadoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.vehiculosToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.vehiculosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listadoToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
@@ -60,15 +61,22 @@
             // contextMenuStrip2
             // 
             this.contextMenuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.estacionamientoToolStripMenuItem});
+            this.estacionamientoToolStripMenuItem,
+            this.vehiculosToolStripMenuItem1});
             this.contextMenuStrip2.Name = "contextMenuStrip2";
-            this.contextMenuStrip2.Size = new System.Drawing.Size(163, 26);
+            this.contextMenuStrip2.Size = new System.Drawing.Size(163, 48);
             // 
             // estacionamientoToolStripMenuItem
             // 
             this.estacionamientoToolStripMenuItem.Name = "estacionamientoToolStripMenuItem";
             this.estacionamientoToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
             this.estacionamientoToolStripMenuItem.Text = "Estacionamiento";
+            // 
+            // vehiculosToolStripMenuItem1
+            // 
+            this.vehiculosToolStripMenuItem1.Name = "vehiculosToolStripMenuItem1";
+            this.vehiculosToolStripMenuItem1.Size = new System.Drawing.Size(162, 22);
+            this.vehiculosToolStripMenuItem1.Text = "Vehiculos";
             // 
             // menuStrip1
             // 
@@ -84,7 +92,8 @@
             // playasToolStripMenuItem
             // 
             this.playasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.listadoToolStripMenuItem});
+            this.listadoToolStripMenuItem,
+            this.vehiculosToolStripMenuItem2});
             this.playasToolStripMenuItem.Name = "playasToolStripMenuItem";
             this.playasToolStripMenuItem.Size = new System.Drawing.Size(100, 20);
             this.playasToolStripMenuItem.Text = "Administración";
@@ -93,8 +102,15 @@
             // 
             this.listadoToolStripMenuItem.Name = "listadoToolStripMenuItem";
             this.listadoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.listadoToolStripMenuItem.Text = "Listado";
+            this.listadoToolStripMenuItem.Text = "Playas";
             this.listadoToolStripMenuItem.Click += new System.EventHandler(this.listadoToolStripMenuItem_Click);
+            // 
+            // vehiculosToolStripMenuItem2
+            // 
+            this.vehiculosToolStripMenuItem2.Name = "vehiculosToolStripMenuItem2";
+            this.vehiculosToolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
+            this.vehiculosToolStripMenuItem2.Text = "Vehiculos";
+            this.vehiculosToolStripMenuItem2.Click += new System.EventHandler(this.vehiculosToolStripMenuItem2_Click);
             // 
             // vehiculosToolStripMenuItem
             // 
@@ -107,7 +123,7 @@
             // listadoToolStripMenuItem1
             // 
             this.listadoToolStripMenuItem1.Name = "listadoToolStripMenuItem1";
-            this.listadoToolStripMenuItem1.Size = new System.Drawing.Size(167, 22);
+            this.listadoToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.listadoToolStripMenuItem1.Text = "Estacionamientos";
             this.listadoToolStripMenuItem1.Click += new System.EventHandler(this.listadoToolStripMenuItem1_Click);
             // 
@@ -115,7 +131,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImage = global::SistemaEstacionamiento.Properties.Resources.LogoSP;
             this.ClientSize = new System.Drawing.Size(793, 541);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -142,6 +158,8 @@
         private System.Windows.Forms.ToolStripMenuItem listadoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem vehiculosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem listadoToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem vehiculosToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem vehiculosToolStripMenuItem2;
     }
 }
 

@@ -25,7 +25,8 @@ namespace SistemaEstacionamiento
 
         private void PlayasForm_Load(object sender, EventArgs e)
         {
-            this.BackColor = System.Drawing.ColorTranslator.FromHtml("#206d7f");
+            this.Width = 850;
+            this.BackColor = System.Drawing.ColorTranslator.FromHtml("#1ac1fd");
             this.StartPosition = FormStartPosition.CenterScreen;
             this.WindowState = FormWindowState.Normal;
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
@@ -154,6 +155,11 @@ namespace SistemaEstacionamiento
                 MessageBox.Show("No seleccionaste ninguna playa");
             }
            
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

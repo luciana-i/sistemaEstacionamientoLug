@@ -102,14 +102,5 @@ namespace BL
             return PlayaDAL.Eliminar(IdPlaya);
            
         }
-
-        //internal void EliminarEspacios(List<Espacio> ListaEspacios)
-        //{
-        //    foreach (Espacio espacio in ListaEspacios)
-        //    {
-
-        //        EspacioDAL.Eliminar(espacio);
-        //    }
-        //}
     }
 }

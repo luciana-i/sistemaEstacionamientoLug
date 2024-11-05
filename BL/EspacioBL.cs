@@ -18,17 +18,11 @@ namespace BL
             return EspacioDAL.Obtener(pId);
         }
 
-        
-
         public List<Espacio> Listar()
         {
             return EspacioDAL.Listar();
         }
 
-        //public List<Espacio> ListarPorPlayaId(int idPlaya)
-        //{
-        //    return EspacioDAL.ListarPorPlayaId(idPlaya);
-        //}
 
         public int Guardar(Espacio espacio)
         {
@@ -47,10 +41,11 @@ namespace BL
             return EspacioDAL.Eliminar(espacio);
         }
 
+        #region Metodos - Negocio
         public int PorcentajeValorChanged(int value)
         {
             int porcentajeInicial = 10;
-            return value*porcentajeInicial;
+            return value * porcentajeInicial;
         }
 
         public string DefinirTamanoDeEspacioParaTipoAuto(String tipoAuto)
@@ -74,6 +69,7 @@ namespace BL
         {
             espacio.Vehiculo = null;
             Guardar(espacio);
-        }
+        } 
+        #endregion
     }
 }

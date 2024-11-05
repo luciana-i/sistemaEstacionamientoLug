@@ -32,7 +32,7 @@ namespace SistemaEstacionamiento
 
         private void CocherasForm_Load(object sender, EventArgs e)
         {
-            this.BackColor = System.Drawing.ColorTranslator.FromHtml("#206d7f");
+            this.BackColor = System.Drawing.ColorTranslator.FromHtml("#1ac1fd");
             this.StartPosition = FormStartPosition.CenterScreen;
             this.WindowState = FormWindowState.Normal;
 

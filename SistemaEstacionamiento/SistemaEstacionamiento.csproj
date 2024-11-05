@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ABMVehiculoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABMVehiculoForm.Designer.cs">
+      <DependentUpon>ABMVehiculoForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="CocherasForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,6 +84,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ABMVehiculoForm.resx">
+      <DependentUpon>ABMVehiculoForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CocherasForm.resx">
       <DependentUpon>CocherasForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -107,6 +116,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="VehiculosForm.resx">
       <DependentUpon>VehiculosForm.cs</DependentUpon>
@@ -133,6 +143,10 @@
       <Project>{b51aa06f-5822-4a02-ba8c-d8d79340e86f}</Project>
       <Name>BL</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\LogoSP.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
