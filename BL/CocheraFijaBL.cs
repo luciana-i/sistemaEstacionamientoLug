@@ -31,6 +31,7 @@ namespace BL
         {
             base.Guardar(cocheraFija);
             cocheraFija.IdEspacio = ((Espacio)cocheraFija).IdEspacio;  
+
             return CocheraFijaDAL.Guardar(cocheraFija);
         }
 
@@ -40,7 +41,10 @@ namespace BL
             return EspacioDAL.Eliminar(cochera);
         }
 
-
+        public float ObtenerPrecioEstadia(Espacio espacio)
+        {
+            return (espacio.Vehiculo.TipoVehiculo.ValorEstadia - ((espacio.Vehiculo.TipoVehiculo.ValorEstadia * espacio.PorcentajeValor) / 100));
+        }
    
 
     }

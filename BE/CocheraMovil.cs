@@ -9,6 +9,7 @@ namespace BE
     public class CocheraMovil :Espacio
     {
         public int IdCocheraMovil { get; set; }
+
         public TimeSpan HoraEntrada { get; set; }
         public TimeSpan HoraSalida { get; set; }
         public new int IdEspacio { get; set; }

@@ -83,7 +83,6 @@ namespace SistemaEstacionamiento
             CocherasForm cocherasForm = new CocherasForm();
             cocherasForm.MinimizeBox = false;
             cocherasForm.MaximizeBox = false;
-            //cocherasForm.playaEditada = playaEditada;
             cocherasForm.cocherasEditadasDto = cocheraDtos;
             cocherasForm.ShowDialog(this);
             Actualizar();
@@ -99,9 +98,9 @@ namespace SistemaEstacionamiento
             }
         }
 
+        #region ActualizarGrid
         public void InicializarBusquedaCocheras()
         {
-          //  cocheraDtos.Clear();
             foreach (var item in movilBL.ListarPorPlaya(playaEditada.IdPlaya))
             {
                 CocheraDto cocheraDto = new CocheraDto();
@@ -135,7 +134,8 @@ namespace SistemaEstacionamiento
             {
                 dataGridView1.Rows.Add(cochera.IdEspacio, cochera.Piso, cochera.Tamano, cochera.PorcentajeValor, cochera.IdCocheraMovil, cochera.IdCocheraFija, cochera.TipoCochera, cochera.IndiceColeccion);
             }
-        }
+        } 
+        #endregion
 
         // editar cochera
         private void button2_Click(object sender, EventArgs e)
@@ -143,12 +143,12 @@ namespace SistemaEstacionamiento
             CocherasForm cocherasForm = new CocherasForm();
             cocherasForm.MinimizeBox = false;
             cocherasForm.MaximizeBox = false;
-            //cocherasForm.playaEditada = playaEditada;
             cocherasForm.cocheraDtoEditada = cocheraDtos[int.Parse(dataGridView1.SelectedRows[0].Cells["IndiceColeccion"].Value.ToString())];
             cocherasForm.cocherasEditadasDto =cocheraDtos;
             cocherasForm.ShowDialog(this);
             Actualizar();
         }
+
         /// <summary>
         /// eleminar Cochera
         /// </summary>
@@ -157,19 +157,6 @@ namespace SistemaEstacionamiento
         private void button3_Click(object sender, EventArgs e)
         {
             cocheraDtos[int.Parse(dataGridView1.SelectedRows[0].Cells["IndiceColeccion"].Value.ToString())].EstadoColeccion=Constantes.EstadosColeccion.Eliminado;
-            //CocheraDto cochera = cocheraDtos.FirstOrDefault(x => x.IndiceColeccion == int.Parse(dataGridView1.SelectedRows[0].Cells["IndiceColeccion"].Value.ToString()));
-            //if (cochera.IdCocheraMovil != 0)
-            //{
-            //    //CocheraMovil cm = movilBL.Obtener(cochera.IdCocheraMovil);
-            //    cocheraDtos.
-            //  // movilBL.Eliminar(cm);
-            //}
-            //else
-            //{
-            //    CocheraFija cf = fijaBL.Obtener(cochera.IdCocheraFija);
-            //    //fijaBL.Eliminar(cf);
-            //}
-
             Actualizar();
         }
 
@@ -177,6 +164,7 @@ namespace SistemaEstacionamiento
         {
             this.Close();
         }
+
         /// <summary>
         /// /GUARDA LA PLAYA
         /// </summary>

@@ -19,15 +19,10 @@ namespace SistemaEstacionamiento
 {
     public partial class CocherasForm : Form
     {
-        //CocheraFijaBL cocheraFijaBL = new CocheraFijaBL();
-        //CocheraMovilBL cocheraMovilBL = new CocheraMovilBL();
-        //PlayaBL playaBL = new PlayaBL();
-        //int idEspacio = 0;
-        //int idCocheraEditada = 0;
+
         public CocheraDto cocheraDtoEditada;
         EspacioBL espacioBL = new EspacioBL();
         public List<CocheraDto> cocherasEditadasDto { get; set; }
-        //public Playa playaEditada { get; set; }
        
         public CocherasForm()
         {
@@ -43,21 +38,6 @@ namespace SistemaEstacionamiento
 
             if (cocheraDtoEditada !=null)
             {
-                //Espacio cocheraEditada = cocheraFijaBL.Listar().FirstOrDefault(x=> x.IdEspacio == idEspacio);
-
-
-
-                //if (cocheraDtoEditada == null)
-                //{
-                    
-                //    cocheraEditada = cocheraMovilBL.Listar().FirstOrDefault(x => x.IdEspacio == idEspacio);
-                //    idCocheraEditada = ((CocheraMovil)cocheraEditada).IdCocheraMovil;
-
-                //}
-                //else
-                //{
-                //    idCocheraEditada = ((CocheraFija)cocheraEditada).IdCocheraFija;
-                //}
 
                 textBox1.Text = cocheraDtoEditada.Piso.ToString();
                 textBox3.Text = cocheraDtoEditada.PorcentajeValor.ToString();
@@ -78,16 +58,7 @@ namespace SistemaEstacionamiento
         {
             try
             {
-                //Espacio cochera;
-                //if (comboBox2.SelectedItem == "Movil")
-                //{
-                //    cochera = new CocheraMovil();
-                   
-                //}
-                //else
-                //{
-                //    cochera = new CocheraFija();
-                //}
+
                 if (cocheraDtoEditada==null)
                 {
                     CocheraDto cocheraDto = new CocheraDto();
@@ -109,26 +80,11 @@ namespace SistemaEstacionamiento
                 else
                 {
                     LlenarObjetoCochera(cocheraDtoEditada);
-                    //cocheraDtoEditada.IdEspacio = idEspacio;
                     if (cocheraDtoEditada.EstadoColeccion != Constantes.EstadosColeccion.Agregado) // significa que si agrego algo y despues lo modifico, entonces no es un update, sigue siendo un insert
                              cocheraDtoEditada.EstadoColeccion = Constantes.EstadosColeccion.Modificado;
-                    //cochera.IdEspacio = idEspacio;
                     VaciarTextbox();
                     cocherasEditadasDto[cocheraDtoEditada.IndiceColeccion]= cocheraDtoEditada;
-                    //guardarCochera(cocheraDtoEditada);
-                    //if (cochera is CocheraMovil)
-                    //{
-                    //    ((CocheraMovil)cochera).IdEspacio = idEspacio;
-                    //    ((CocheraMovil)cochera).IdCocheraMovil = idCocheraEditada;
-                    //    cocheraMovilBL.Guardar((CocheraMovil)cochera);
 
-                    //}
-                    //else
-                    //{
-                    //    ((CocheraFija)cochera).IdEspacio = idEspacio;
-                    //    ((CocheraFija)cochera).IdCocheraFija = idCocheraEditada;
-                    //    cocheraFijaBL.Guardar((CocheraFija)cochera);
-                    //}
                 }
                 this.Close();
             }
@@ -151,37 +107,7 @@ namespace SistemaEstacionamiento
             cocherasEditadasDto.Add(cocheraDto);
             int index = cocherasEditadasDto.IndexOf(cocheraDto);
             cocherasEditadasDto[index].IndiceColeccion = index;
-            //if (cocheraDto.TipoCocheraEnum == Constantes.TipoCochera.Fija)
-            //{
-
-            //    // playaEditada.AgregarEspacio(cochera);
-            //    //CocheraDto cocheraDto = new CocheraDto();
-            //    //cocheraDto.Tamano = cochera.Tamano;
-            //    //cocheraDto.Piso = cochera.Piso;
-            //    //cocheraDto.PorcentajeValor = cochera.PorcentajeValor;
-            //    //cocheraDto.TipoCocheraEnum = Constantes.TipoCochera.Fija;
-            //    //cocheraDto.EstadoColeccion = Constantes.EstadosColeccion.Agregado;
-            //    cocherasEditadasDto.Add(cocheraDto);
-            //    int index = cocherasEditadasDto.IndexOf(cocheraDto);
-            //    cocherasEditadasDto[index].IndiceColeccion = index;
-            //   // cocheraFijaBL.Guardar((CocheraFija)cochera);
-            //    //
-            //}
-            //else
-            //{
-            //    //CocheraDto cocheraDto = new CocheraDto();
-            //    //cocheraDto.Tamano = cochera.Tamano;
-            //    //cocheraDto.Piso = cochera.Piso;
-            //    //cocheraDto.PorcentajeValor = cochera.PorcentajeValor;
-            //    //cocheraDto.TipoCocheraEnum = Constantes.TipoCochera.Movil;
-            //    //cocheraDto.EstadoColeccion = Constantes.EstadosColeccion.Agregado;
-            //    cocherasEditadasDto.Add(cocheraDto);
-            //    int index = cocherasEditadasDto.IndexOf(cocheraDto);
-            //    cocherasEditadasDto[index].IndiceColeccion = index;
-            //    //playaEditada.AgregarEspacio(cochera);
-            //    // cocheraMovilBL.Guardar((CocheraMovil)cochera);
-
-            //}
+  
         }
 
         void LlenarObjetoCochera(CocheraDto cochera)
@@ -192,8 +118,6 @@ namespace SistemaEstacionamiento
                 cochera.Piso = int.Parse(textBox1.Text);
                 cochera.PorcentajeValor = int.Parse(textBox3.Text);
                 cochera.Tamano = comboBox1.SelectedItem.ToString();
-                //cochera.IdPlaya = playaEditada.IdPlaya;
-
 
             }
             else
@@ -214,24 +138,6 @@ namespace SistemaEstacionamiento
         private void button1_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (char.IsDigit(e.KeyChar))
-            {
-                MessageBox.Show("Presionaste un número: " + e.KeyChar);
-            }
-            // Verifica si la tecla presionada es la tecla de retroceso
-            else if (e.KeyChar == (char)Keys.Back)
-            {
-                MessageBox.Show("Presionaste la tecla de retroceso.");
-            }
-            else
-            {
-                // Cancela el evento si no es un número o la tecla de retroceso
-                e.Handled = true;
-            }
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)

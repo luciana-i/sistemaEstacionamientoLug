@@ -80,7 +80,12 @@ namespace BL
         public string obtenerPatente()
         {
             return Vehiculo != null ? Vehiculo.Patente : "";
-        } 
+        }
+
+        public string ObtenerAbono()
+        {
+            return Abono != null ? Abono : "";
+        }
         #endregion
     }
 }

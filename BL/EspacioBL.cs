@@ -32,6 +32,12 @@ namespace BL
 
         public int Guardar(Espacio espacio)
         {
+            if(espacio.Vehiculo != null)
+            {
+                VehiculoBL vehiculoBl = new VehiculoBL();
+                vehiculoBl.Guardar(espacio.Vehiculo);
+            }         
+
             return EspacioDAL.Guardar(espacio);
         }
 
@@ -62,6 +68,12 @@ namespace BL
                 default:
                     return "";
             }
+        }
+
+        public void BorrarVehiculo(Espacio espacio)
+        {
+            espacio.Vehiculo = null;
+            Guardar(espacio);
         }
     }
 }

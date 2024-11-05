@@ -59,8 +59,6 @@ namespace SistemaEstacionamiento
             cocherasDGV.Columns.Add("IdCocheraFija", "IdCocheraFija");
             cocherasDGV.Columns["IdCocheraFija"].Visible = false;
             cocherasDGV.Columns.Add("Abono", "Abono por Adelantado");
-            //cocherasDGV.Columns.Add("IndiceColeccion", "IndiceColeccion");
-            //cocherasDGV.Columns["IndiceColeccion"].Visible = false;
             cocherasDGV.RowHeadersVisible = false;
             cocherasDGV.AllowUserToAddRows = false;
             cocherasDGV.AllowUserToDeleteRows = false;
@@ -84,12 +82,8 @@ namespace SistemaEstacionamiento
 
         }
 
-        /// <summary>
-        /// 
-        /// El listado de espacios de una cochera permitirá visualizar si está ocupada o no, hora de entrada
-        /// si se tratase de una cochera móvil, patente del vehículo estacionado si lo hubiese, y una
-        /// indicación si el vehículo estacionado abonó el precio por anticipado
-        /// </summary>
+
+        #region ActualizarGrid
         public void InicializarBusquedaCocheras()
         {
             cocherasDGV.Rows.Clear();
@@ -121,7 +115,7 @@ namespace SistemaEstacionamiento
                 cocheraDto.EstadoColeccion = Constantes.EstadosColeccion.SinCambio;
                 cocheraDto.TipoCocheraEnum = Constantes.TipoCochera.Fija;
                 cocheraDto.Vehiculo = item.Vehiculo;
-                cocheraDto.Abono = (item.Vehiculo!=null ) ? item.Vehiculo.Abono : "";
+                cocheraDto.Abono = (item.Vehiculo != null) ? item.Vehiculo.Abono : "";
                 cocheraDtos.Add(cocheraDto);
                 int index = cocheraDtos.IndexOf(cocheraDto);
                 cocheraDtos[index].IndiceColeccion = index;
@@ -129,9 +123,10 @@ namespace SistemaEstacionamiento
 
             foreach (CocheraDto cochera in cocheraDtos)
             {
-                cocherasDGV.Rows.Add(cochera.IdEspacio, cochera.CocheraOcupada(), cochera.Piso, cochera.Tamano,/*cochera.PorcentajeValor ,*/ cochera.TipoCochera, cochera.obtenerPatente(), cochera.IdCocheraMovil, cochera.HoraEntrada, cochera.IdCocheraFija, cochera.Abono/* cochera.TipoCochera, cochera.IndiceColeccion*/);
+                cocherasDGV.Rows.Add(cochera.IdEspacio, cochera.CocheraOcupada(), cochera.Piso, cochera.Tamano,/*cochera.PorcentajeValor ,*/ cochera.TipoCochera, cochera.obtenerPatente(), cochera.IdCocheraMovil, cochera.HoraEntrada, cochera.IdCocheraFija, cochera.ObtenerAbono()/* cochera.TipoCochera, cochera.IndiceColeccion*/);
             }
-        }
+        } 
+        #endregion
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -148,27 +143,36 @@ namespace SistemaEstacionamiento
         {
             this.Close();
         }
-        //Egreso vehiculo
+
+
+
+        #region Egreso Vehiculo
         private void button3_Click(object sender, EventArgs e)
         {
             if (cocherasDGV.SelectedRows[0].Cells["IdEspacio"].Value.ToString() != "")
             {
-                if ((DateTime.Now.TimeOfDay - playaEditada.HoraCierre).TotalHours <=0)
+                if ((DateTime.Now.TimeOfDay - playaEditada.HoraCierre).TotalHours <= 0)
                 {
+
                     CocheraMovil cocheraMovil = movilBL.ListarPorPlaya(playaEditada.IdPlaya).FirstOrDefault(x => x.IdEspacio.ToString() == cocherasDGV.SelectedRows[0].Cells["IdEspacio"].Value.ToString());
+
                     if (cocheraMovil != null)
                     {
-                        cocheraMovil.HoraSalida = DateTime.Now.TimeOfDay;
+                        string mensaje = CocheraMovilBL.SuperoCincoHoras(cocheraMovil);
 
-                        if((cocheraMovil.HoraSalida - cocheraMovil.HoraEntrada).TotalHours >= 5)
+                        if (mensaje.Length > 0)
                         {
-                            MessageBox.Show("Ha sobrepasado las 5 horas, deberá abonar estadía");
+                            MessageBox.Show(mensaje);
                         }
+                        movilBL.EgresarAuto(cocheraMovil);
                     }
-                    Espacio espacio = espacioBL.Obtener(int.Parse(cocherasDGV.SelectedRows[0].Cells["IdEspacio"].Value.ToString()));
-                    espacio.Vehiculo = null;
-                    espacioBL.Guardar(espacio);
-                    MessageBox.Show("El vehiculo egreso del estacionamiento");
+                    else
+                    {
+                        Espacio espacio = espacioBL.Obtener(int.Parse(cocherasDGV.SelectedRows[0].Cells["IdEspacio"].Value.ToString()));
+                        espacioBL.BorrarVehiculo(espacio);
+                    }
+
+                    MessageBox.Show("El vehiculo egresó del estacionamiento");
                     InicializarBusquedaCocheras();
                 }
                 else
@@ -180,6 +184,7 @@ namespace SistemaEstacionamiento
             {
                 MessageBox.Show("No seleccionaste ningun estacionamiento");
             }
-        }
+        } 
+        #endregion
     }
 }
